@@ -4,6 +4,14 @@ import logo from "./assets/logo.svg";
 import "./App.css";
 
 function App() {
+  const API_KEY = import.meta.env.VITE_API_KEY;
+  const gameId = "836449"; // Remplacez ceci par l'ID du jeu que vous recherchez
+  const url = `https://api.rawg.io/api/games/${gameId}?key=${API_KEY}`;
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.error("Error:", error));
   return (
     <div className="App">
       <header className="App-header">
