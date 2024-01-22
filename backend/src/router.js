@@ -8,6 +8,7 @@ const router = express.Router();
 
 // Import itemControllers module for handling item-related operations
 const itemControllers = require("./controllers/itemControllers");
+const userControllers = require("./controllers/userControllers");
 
 // Route to get a list of items
 router.get("/items", itemControllers.browse);
@@ -19,5 +20,26 @@ router.get("/items/:id", itemControllers.read);
 router.post("/items", itemControllers.add);
 
 /* ************************************************************************* */
+
+const { inscription, hashPassword } = require("./services/inscription");
+const { alreadyInYourList } = require("./services/list");
+
+// Route to add a new user
+router.post("/users", inscription, hashPassword, userControllers.add);
+/* {
+    "pseudo" : "admin",
+    "email" : "admin@admin.com",
+    "password": "rootroot"
+} */
+
+router.post("/users/played/:id", alreadyInYourList, userControllers.addgame);
+/* http://localhost:3310/api/users/played/836951 lien exemple
+{
+    "id" : 1,
+    "liked" : 1
+} */
+
+router.get("/users/list/:pseudo", userControllers.readAll);
+// http://localhost:3310/api/users/list/pseudo
 
 module.exports = router;

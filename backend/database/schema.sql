@@ -3,13 +3,13 @@ CREATE TABLE `utilisateur` (
   `pseudo` VARCHAR(50) NOT NULL UNIQUE,
   `password` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL UNIQUE,
-  `admin` BOOLEAN
+  `admin` BOOLEAN DEFAULT 0
 );
 
 CREATE TABLE `played` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `userId` INT NOT NULL,
   `gameId` INT NOT NULL,
-  `liked` BOOLEAN,
+  `liked` BOOLEAN DEFAULT 0,
   FOREIGN KEY (`userId`) REFERENCES `utilisateur`(`id`) ON DELETE CASCADE
 );
