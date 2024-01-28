@@ -17,8 +17,9 @@ function App() {
   return (
     <>
       <Navbar />
-      <Outlet />
-      <Footer />
+      <div className="main-container max-w-[1200px] min-h-screen text-white mx-auto pt-[72px]">
+        <Outlet />
+      </div>
     </>
   );
 }
