@@ -34,7 +34,7 @@ class UserManager extends AbstractManager {
   async getAllGame(pseudo) {
     // Execute the SQL SELECT query to retrieve all unique games from the "played" table
     const [rows] = await this.database.query(
-      `SELECT u.pseudo, p.gameId, p.userId, p.liked FROM utilisateur u INNER JOIN played p ON u.id = p.userId WHERE u.pseudo = ?`,
+      `SELECT u.pseudo, p.gameId, p.userId, p.liked FROM ${this.table} u INNER JOIN played p ON u.id = p.userId WHERE u.pseudo = ?`,
       [pseudo]
     );
 
@@ -48,6 +48,14 @@ class UserManager extends AbstractManager {
       [userId, gameId]
     );
     return result;
+  }
+
+  async updateGame(userId, gameId, liked) {
+    const [result] = await this.database.query(
+      `UPDATE played SET liked = ? WHERE userId = ? AND gameId = ?`,
+      [liked ? 1 : 0, userId, gameId]
+    );
+    return result.affectedRows;
   }
 }
 

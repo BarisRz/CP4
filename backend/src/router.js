@@ -38,6 +38,7 @@ router.post("/users/played/:id", alreadyInYourList, userControllers.addgame);
     "id" : 1,
     "liked" : 1
 } */
+router.put("/users/played/:id", userControllers.update);
 
 router.get("/users/list/:pseudo", userControllers.readAll);
 // http://localhost:3310/api/users/list/pseudo
