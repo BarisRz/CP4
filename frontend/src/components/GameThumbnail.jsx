@@ -3,7 +3,7 @@ import { useState } from "react";
 function GameThumbnail({ game }) {
   const [gameId, setGameId] = useState(game.id);
   return (
-    <div className="w-[220px] h-[220px] bg-white rounded-2xl flex flex-col hover:scale-110 transition overflow-hidden">
+    <div className="w-[220px] h-[220px] bg-white rounded-2xl flex flex-col hover:scale-110 transition overflow-hidden shadow-2xl">
       <div
         className=" bg-red-600 h-[140px]"
         style={{

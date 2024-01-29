@@ -1,4 +1,5 @@
 // Import access to database tables
+const jwt = require("jsonwebtoken");
 const tables = require("../tables");
 
 // The A of BREAD - Add (Create) operation
@@ -72,10 +73,27 @@ const update = async (req, res) => {
   }
 };
 
+const login = async (req, res, next) => {
+  try {
+    const utilisateur = req.user;
+    const token = jwt.sign({ utilisateur }, process.env.APP_SECRET);
+    res.cookie("tokenPlayLog", token, { httpOnly: true });
+    res.json({ utilisateur });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const admin = async (req, res) => {
+  res.status(200).json({ message: "Welcome to the admin page" });
+};
+
 // Ready to export the controller functions
 module.exports = {
   add,
   addgame,
   readAll,
   update,
+  login,
+  admin,
 };

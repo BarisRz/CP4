@@ -30,7 +30,15 @@ function Navbar() {
     >
       <div className="w-[1200px] mx-auto p-4 flex justify-between">
         <div className="flex items-center gap-4 font-bold">
-          <NavLink to="/">
+          <NavLink
+            to="/"
+            onClick={() =>
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              })
+            }
+          >
             <motion.svg
               width="40"
               height="40"
@@ -100,28 +108,22 @@ function Navbar() {
               placeholder="Search for a game"
             />
           </div>
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
+          <div className="hover:scale-105 transition">
             <NavLink
               to="login"
-              className="bg-secondary font-bold py-[9px] px-4 rounded-3xl"
+              className="bg-gradient-to-r from-secondary to-blue-500 font-bold py-[9px] px-4 rounded-3xl hover:saturate-150"
             >
               Log In
             </NavLink>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
+          </div>
+          <div className="hover:scale-105 transition">
             <NavLink
               to="signup"
-              className="bg-tertiary text-black py-[9px] px-4 rounded-3xl font-bold"
+              className="bg-gradient-to-r from-tertiary to-blue-500 text-black py-[9px] px-4 rounded-3xl font-bold hover:saturate-150"
             >
               Sign Up
             </NavLink>
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>

@@ -23,6 +23,7 @@ router.post("/items", itemControllers.add);
 
 const { inscription, hashPassword } = require("./services/inscription");
 const { alreadyInYourList } = require("./services/list");
+const { verifyPassword, verifyToken } = require("./services/auth");
 
 // Route to add a new user
 router.post("/users", inscription, hashPassword, userControllers.add);
@@ -31,6 +32,14 @@ router.post("/users", inscription, hashPassword, userControllers.add);
     "email" : "admin@admin.com",
     "password": "rootroot"
 } */
+
+// Route to login
+router.post("/login", verifyPassword, userControllers.login);
+/* {
+    "pseudo" : "admin",
+    "password": "rootroot"
+} */
+router.post("/admin", verifyToken, userControllers.admin);
 
 router.post("/users/played/:id", alreadyInYourList, userControllers.addgame);
 /* http://localhost:3310/api/users/played/836951 lien exemple

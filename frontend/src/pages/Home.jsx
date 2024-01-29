@@ -9,17 +9,26 @@ import GameThumbnail from "../components/GameThumbnail";
 
 function Home() {
   const API_KEY = import.meta.env.VITE_API_KEY;
-  const url = `https://api.rawg.io/api/games?key=${API_KEY}&page_size=5`;
+  const url = `https://api.rawg.io/api/games?key=${API_KEY}`;
 
-  const [games, setGames] = useState([]);
+  const [recommendedGames, setRecommendedGames] = useState([]);
+  const [metacriticGames, setMetacriticGames] = useState([]);
 
   // Fetch de l'API
   useEffect(() => {
     axios
-      .get(url)
+      .get(`${url}${"&page_size=5"}`)
       .then((response) => {
-        console.log(response.data.results);
-        setGames(response.data.results);
+        console.info("recommended: ", response.data.results);
+        setRecommendedGames(response.data.results);
+      })
+      .catch((error) => console.error("Error:", error));
+
+    axios
+      .get(`${url}${"&ordering=-metacritic&page_size=5"}`)
+      .then((response) => {
+        console.info("metacritic: ", response.data.results);
+        setMetacriticGames(response.data.results);
       })
       .catch((error) => console.error("Error:", error));
   }, []);
@@ -58,13 +67,24 @@ function Home() {
         <div className="flex-1">
           <img src={heroimg} alt="hero" className="scale-150" />
         </div>
-        <div className="absolute top-[90%] left-[48%] transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-secondary to-blue-500 animate-bounce rounded-full p-1">
+        <button
+          type="button"
+          className="absolute top-[90%] left-[48%] transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-secondary to-blue-500 animate-bounce rounded-full p-1"
+          onClick={() =>
+            window.scrollTo({
+              top: document.body.scrollHeight,
+              behavior: "smooth",
+            })
+          }
+        >
           <img src={arrowb} alt="arrow" className="w-10" />
-        </div>
+        </button>
       </div>
       <div>
         <div className="flex justify-between items-center">
-          <p className="text-2xl font-bold">Popular among others</p>
+          <p className="text-2xl font-bold self-end">
+            Most recommended by Players
+          </p>
           <NavLink
             to="popular"
             className="flex items-center font-bold rounded-2xl p-2 px-4 bg-gradient-to-r from-secondary to-blue-500"
@@ -73,7 +93,23 @@ function Home() {
           </NavLink>
         </div>
         <div className="flex my-4 gap-[25px] flex-wrap">
-          {games.map((game) => (
+          {recommendedGames.map((game) => (
+            <GameThumbnail key={game.id} game={game} />
+          ))}
+        </div>
+      </div>
+      <div className="my-8">
+        <div className="flex justify-between items-center">
+          <p className="text-2xl font-bold self-end">Highest Metacritic</p>
+          <NavLink
+            to="popular"
+            className="flex items-center font-bold rounded-2xl p-2 px-4 bg-gradient-to-r from-secondary to-blue-500"
+          >
+            See more
+          </NavLink>
+        </div>
+        <div className="flex mt-4 mb-28 gap-[25px] flex-wrap">
+          {metacriticGames.map((game) => (
             <GameThumbnail key={game.id} game={game} />
           ))}
         </div>
