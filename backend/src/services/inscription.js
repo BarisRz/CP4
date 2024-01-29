@@ -10,10 +10,16 @@ const userSchema = Joi.object({
 const inscription = async (req, res, next) => {
   try {
     await userSchema.validateAsync(req.body);
-
     next();
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    const errorField = error.details[0].context.key;
+    const errorType = error.details[0].type;
+
+    if (errorType === "string.min") {
+      res.status(400).json({ error: `Le champ ${errorField} est trop court.` });
+    } else {
+      res.status(400).json({ error: `Le champ ${errorField} est manquant.` });
+    }
   }
 };
 
