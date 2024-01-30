@@ -16,9 +16,9 @@ const inscription = async (req, res, next) => {
     const errorType = error.details[0].type;
 
     if (errorType === "string.min") {
-      res.status(400).json({ error: `Le champ ${errorField} est trop court.` });
+      res.status(400).json({ error: `Your ${errorField} is too short.` });
     } else {
-      res.status(400).json({ error: `Le champ ${errorField} est manquant.` });
+      res.status(400).json({ error: `${errorField} is missing or incorrect.` });
     }
   }
 };

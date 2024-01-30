@@ -28,6 +28,14 @@ class UserManager extends AbstractManager {
     return result;
   }
 
+  async readId(id) {
+    const [result] = await this.database.query(
+      `select * from ${this.table} where id=?`,
+      [id]
+    );
+    return result;
+  }
+
   async playedgame(gameId, user) {
     // Execute the SQL SELECT query to retrieve a specific item by its ID
     const [result] = await this.database.query(

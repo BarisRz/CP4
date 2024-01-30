@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { UserProvider } from "./contexts/UserContext";
 import App from "./pages/App";
 import Home from "./pages/Home";
 
@@ -35,8 +36,8 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <>
+  <UserProvider>
     <ToastContainer className="toast-position" />
     <RouterProvider router={router} />
-  </>
+  </UserProvider>
 );

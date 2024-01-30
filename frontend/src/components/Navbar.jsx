@@ -1,11 +1,14 @@
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useUser } from "../contexts/UserContext";
 
 import search from "../assets/search.svg";
+import loggedicon from "../assets/user-icon.svg";
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const { user } = useUser();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -108,22 +111,34 @@ function Navbar() {
               placeholder="Search for a game"
             />
           </div>
-          <div className="hover:scale-105 transition">
-            <NavLink
-              to="login"
-              className="bg-gradient-to-r from-secondary to-blue-500 font-bold py-[9px] px-4 rounded-3xl hover:saturate-150"
-            >
-              Log In
-            </NavLink>
-          </div>
-          <div className="hover:scale-105 transition">
-            <NavLink
-              to="signup"
-              className="bg-gradient-to-r from-tertiary to-blue-500 text-black py-[9px] px-4 rounded-3xl font-bold hover:saturate-150"
-            >
-              Sign Up
-            </NavLink>
-          </div>
+          {!user ? (
+            <>
+              <div className="hover:scale-105 transition">
+                <NavLink
+                  to="login"
+                  className="bg-gradient-to-r from-secondary to-blue-500 font-bold py-[9px] px-4 rounded-3xl hover:saturate-150"
+                >
+                  Log In
+                </NavLink>
+              </div>
+              <div className="hover:scale-105 transition">
+                <NavLink
+                  to="signup"
+                  className="bg-gradient-to-r from-tertiary to-blue-500 text-black py-[9px] px-4 rounded-3xl font-bold hover:saturate-150"
+                >
+                  Sign Up
+                </NavLink>
+              </div>
+            </>
+          ) : (
+            <div>
+              <img
+                src={loggedicon}
+                alt="logged icon"
+                className="w-11 cursor-pointer"
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>

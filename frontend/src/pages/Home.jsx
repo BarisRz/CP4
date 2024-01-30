@@ -6,6 +6,7 @@ import heroimg from "../assets/Hero.png";
 import arrow from "../assets/arrow.svg";
 import arrowb from "../assets/arrowb.svg";
 import GameThumbnail from "../components/GameThumbnail";
+import AnimatedPage from "../components/AnimatedPage";
 
 function Home() {
   const API_KEY = import.meta.env.VITE_API_KEY;
@@ -34,7 +35,7 @@ function Home() {
   }, []);
 
   return (
-    <>
+    <AnimatedPage>
       <div className="landing h-screen2 flex items-center">
         <div className="flex-1">
           <motion.p
@@ -114,7 +115,7 @@ function Home() {
           ))}
         </div>
       </div>
-    </>
+    </AnimatedPage>
   );
 }
 

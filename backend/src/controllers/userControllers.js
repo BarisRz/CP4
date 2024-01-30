@@ -35,6 +35,20 @@ const addgame = async (req, res) => {
   }
 };
 
+const find = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const [result] = await tables.utilisateur.readId(id);
+    if (!result) {
+      res.status(404).send("No user found");
+    }
+    delete result.password;
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 const readAll = async (req, res) => {
   try {
     // Fetch all items from the database
@@ -73,14 +87,14 @@ const update = async (req, res) => {
   }
 };
 
-const login = async (req, res, next) => {
+const login = async (req, res) => {
   try {
     const utilisateur = req.user;
     const token = jwt.sign({ utilisateur }, process.env.APP_SECRET);
     res.cookie("tokenPlayLog", token, { httpOnly: true });
     res.json({ utilisateur });
   } catch (err) {
-    next(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -96,4 +110,5 @@ module.exports = {
   update,
   login,
   admin,
+  find,
 };
