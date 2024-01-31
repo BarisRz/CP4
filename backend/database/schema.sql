@@ -15,5 +15,5 @@ CREATE TABLE `played` (
 );
 
 ALTER TABLE `played` 
-ADD COLUMN `rating` INT DEFAULT NULL 
+ADD COLUMN `rating` FLOAT DEFAULT NULL 
 CHECK (rating >= 0 AND rating <= 5);

@@ -126,6 +126,20 @@ const deleteFromList = async (req, res) => {
   }
 };
 
+const checkGame = async (req, res) => {
+  try {
+    const { gameId } = req.params;
+    const { id } = req.body;
+    const [result] = await tables.utilisateur.getGame(id, gameId);
+    if (!result) {
+      return res.status(404).send("No game found");
+    }
+    return res.json(result);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+};
+
 // Ready to export the controller functions
 module.exports = {
   add,
@@ -137,4 +151,5 @@ module.exports = {
   admin,
   find,
   deleteFromList,
+  checkGame,
 };

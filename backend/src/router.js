@@ -42,9 +42,17 @@ router.post("/users/played/:id", alreadyInYourList, userControllers.addgame);
     "liked" : 1
 } */
 router.put("/users/played/:id", userControllers.update);
+/*
+{
+    "id" : 1,
+    "liked" : 1,
+    "rating" : 5
+}
+*/
 
 router.get("/users/list/:pseudo", userControllers.readAll);
 // http://localhost:3310/api/users/list/pseudo
 
 router.delete("/users/list/:gameId", userControllers.deleteFromList);
+router.post("/users/game/:gameId", userControllers.checkGame);
 module.exports = router;

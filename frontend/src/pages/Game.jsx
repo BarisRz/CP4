@@ -93,7 +93,10 @@ function Game() {
       <div className="flex flex-wrap items-center gap-2 p-4 bg-gradient-to-l from-primary to-secondary/[0]">
         <p className="font-bold">Community Tags:</p>
         {game?.tags?.map((tags) => (
-          <p className="p-2 bg-primary rounded-xl border border-secondary/35">
+          <p
+            key={tags.id}
+            className="p-2 bg-primary rounded-xl border border-secondary/50"
+          >
             {tags.name}
           </p>
         ))}
