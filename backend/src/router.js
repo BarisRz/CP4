@@ -46,4 +46,5 @@ router.put("/users/played/:id", userControllers.update);
 router.get("/users/list/:pseudo", userControllers.readAll);
 // http://localhost:3310/api/users/list/pseudo
 
+router.delete("/users/list/:gameId", userControllers.deleteFromList);
 module.exports = router;

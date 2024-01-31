@@ -9,7 +9,7 @@ const alreadyInYourList = async (req, res, next) => {
       res.status(400).json({ error: "Game already in your list" });
     }
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
 };
 

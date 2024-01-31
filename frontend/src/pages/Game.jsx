@@ -3,10 +3,14 @@ import { Rating } from "react-simple-star-rating";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
+import { useUser } from "../contexts/UserContext";
+
 function Game() {
+  const { user, setUser } = useUser();
   const { id } = useParams();
   const [game, setGame] = useState({});
   const [rating, setRating] = useState(0);
+  const [refresh, setRefresh] = useState(false);
 
   const handleRating = (rate) => {
     setRating(rate);
@@ -24,9 +28,14 @@ function Game() {
       .catch((error) => console.error("Error:", error));
   }, []);
 
+  useEffect(() => {
+    if (user !== false) {
+    }
+  }, []);
+
   return (
     <div className="flex flex-col pt-10 gap-2 w-full">
-      <div className="flex gap-2 w-full">
+      <div className="flex gap-2 w-full bg-gradient-to-l from-primary to-secondary/[0] py-4">
         {game?.background_image ? (
           <img
             src={game.background_image}
@@ -72,28 +81,32 @@ function Game() {
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-center py-8">
-        <Rating
-          onClick={handleRating}
-          className="custom-rating"
-          SVGclassName="inline-block"
-          initialValue={game.rating}
-          transition
-          allowFraction
-          fillColor="#26ccf2"
-          emptyColor="#333232"
-        />
-        <p>({game.rating})</p>
+      <div className="flex items-center justify-center py-8 bg-gradient-to-r from-primary to-secondary/[0]">
+        <div className="flex items-center">
+          <Rating
+            onClick={handleRating}
+            className="custom-rating"
+            SVGclassName="inline-block"
+            initialValue={game.rating}
+            transition
+            allowFraction
+            fillColor="#26ccf2"
+            emptyColor="#333232"
+          />
+          <p>({game.rating})</p>
+        </div>
       </div>
-      <div className="flex flex-wrap items-center gap-2 pb-2">
+      <div className="flex flex-wrap items-center gap-2 p-4 bg-gradient-to-l from-primary to-secondary/[0]">
         <p className="font-bold">Community Tags:</p>
         {game?.tags?.map((tags) => (
-          <p className="p-2 bg-primary rounded-xl">{tags.name}</p>
+          <p className="p-2 bg-primary rounded-xl border border-secondary/35">
+            {tags.name}
+          </p>
         ))}
       </div>
       <div
         dangerouslySetInnerHTML={{ __html: game.description }}
-        className="text-lg"
+        className="text-lg bg-primary p-4 mb-8"
       />
     </div>
   );

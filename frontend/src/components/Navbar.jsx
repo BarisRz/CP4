@@ -132,7 +132,11 @@ function Navbar() {
           </div>
           {user.admin ? (
             <NavLink to="/admin">
-              <img src={adminlock} alt="admin icon" className="w-10" />
+              <img
+                src={adminlock}
+                alt="admin icon"
+                className="w-10 transition hover:scale-105"
+              />
             </NavLink>
           ) : (
             ""
@@ -162,7 +166,7 @@ function Navbar() {
                 src={loggedicon}
                 ref={imgRef}
                 alt="logged icon"
-                className="w-11 cursor-pointer"
+                className="w-11 cursor-pointer active:scale-110 transition hover:scale-105"
                 id="profil-icon"
               />
             </button>

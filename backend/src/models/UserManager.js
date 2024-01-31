@@ -37,20 +37,26 @@ class UserManager extends AbstractManager {
   }
 
   async playedgame(gameId, user) {
-    // Execute the SQL SELECT query to retrieve a specific item by its ID
-    const [result] = await this.database.query(
-      `insert into played (gameId, userId, liked) values (?, ?, ?)`,
-      [gameId, user.id, user.liked ? 1 : 0]
-    );
+    let result;
+    if (user.rating) {
+      [result] = await this.database.query(
+        `insert into played (gameId, userId, liked, rating) values (?, ?, ?, ?)`,
+        [gameId, user.id, user.liked ? 1 : 0, user.rating]
+      );
+    } else {
+      [result] = await this.database.query(
+        `insert into played (gameId, userId, liked) values (?, ?, ?)`,
+        [gameId, user.id, user.liked ? 1 : 0]
+      );
+    }
 
-    // Return the first row of the result, which represents the item
     return result.insertId;
   }
 
   async getAllGame(pseudo) {
     // Execute the SQL SELECT query to retrieve all unique games from the "played" table
     const [rows] = await this.database.query(
-      `SELECT u.pseudo, p.gameId, p.userId, p.liked FROM ${this.table} u INNER JOIN played p ON u.id = p.userId WHERE u.pseudo = ?`,
+      `SELECT u.pseudo, p.gameId, p.userId, p.liked, p.rating FROM ${this.table} u INNER JOIN played p ON u.id = p.userId WHERE u.pseudo = ?`,
       [pseudo]
     );
 
@@ -66,10 +72,25 @@ class UserManager extends AbstractManager {
     return result;
   }
 
-  async updateGame(userId, gameId, liked) {
+  async updateGame(userId, gameId, liked, rating) {
+    if (rating) {
+      const [result] = await this.database.query(
+        `UPDATE played SET liked = ?, rating = ? WHERE userId = ? AND gameId = ?`,
+        [liked ? 1 : 0, rating, userId, gameId]
+      );
+      return result.affectedRows;
+    }
     const [result] = await this.database.query(
       `UPDATE played SET liked = ? WHERE userId = ? AND gameId = ?`,
       [liked ? 1 : 0, userId, gameId]
+    );
+    return result.affectedRows;
+  }
+
+  async deleteGame(userId, gameId) {
+    const [result] = await this.database.query(
+      `DELETE FROM played WHERE userId = ? AND gameId = ?`,
+      [userId, gameId]
     );
     return result.affectedRows;
   }

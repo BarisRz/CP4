@@ -36,7 +36,7 @@ const addgame = async (req, res) => {
 };
 
 const find = async (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   try {
     const [result] = await tables.utilisateur.readId(id);
     if (!result) {
@@ -72,7 +72,8 @@ const update = async (req, res) => {
     const games = await tables.utilisateur.updateGame(
       req.body.id,
       req.params.id,
-      req.body.liked
+      req.body.liked,
+      req.body.rating
     );
 
     // Respond with the items in JSON format
@@ -111,6 +112,20 @@ const admin = async (req, res) => {
   res.sendStatus(200);
 };
 
+const deleteFromList = async (req, res) => {
+  try {
+    const { gameId } = req.params;
+    const { id } = req.body;
+    const result = await tables.utilisateur.deleteGame(id, gameId);
+    if (result === 0) {
+      return res.status(404).send("No game found");
+    }
+    return res.sendStatus(200);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+};
+
 // Ready to export the controller functions
 module.exports = {
   add,
@@ -121,4 +136,5 @@ module.exports = {
   logout,
   admin,
   find,
+  deleteFromList,
 };
