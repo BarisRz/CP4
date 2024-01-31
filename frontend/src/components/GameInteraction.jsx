@@ -38,11 +38,11 @@ function GameInteraction({ game }) {
 
   const updateGame = async (like, ratings) => {
     if (isPlayed === false) {
-      const bodyrequest = { id: user.id, liked: like, rating: ratings };
+      const body = { id: user.id, liked: like, rating: ratings };
       try {
         const res = await axios.post(
           `${import.meta.env.VITE_BACKEND_URL}/api/users/played/${game.id}`,
-          bodyrequest
+          body
         );
         if (res.status === 201) {
           setRefresh(!refresh);
@@ -55,11 +55,11 @@ function GameInteraction({ game }) {
       }
     }
     if (isPlayed !== false) {
-      const bodyrequest = { id: user.id, liked: like, rating: ratings };
+      const body = { id: user.id, liked: like, rating: ratings };
       try {
         const res = await axios.put(
           `${import.meta.env.VITE_BACKEND_URL}/api/users/played/${game.id}`,
-          bodyrequest
+          body
         );
         if (res.status === 200) {
           setRefresh(!refresh);
@@ -77,7 +77,7 @@ function GameInteraction({ game }) {
     updateGame(isLiked, rate);
   };
   return (
-    <div className="flex w-11/12 justify-between">
+    <div className="flex w-11/12 justify-around">
       <div className="flex items-center">
         <Rating
           onClick={handleRating}
@@ -107,6 +107,13 @@ function GameInteraction({ game }) {
           />
         </button>
       </div>
+      <button type="button" onClick={() => {}}>
+        <img
+          src={isPlayed !== false ? controllerplayed : controllernotplayed}
+          alt="favorite"
+          className="w-11 hover:scale-110 transition active:scale-125"
+        />
+      </button>
     </div>
   );
 }

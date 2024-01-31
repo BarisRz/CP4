@@ -20,7 +20,7 @@ function Admin() {
   }, []);
 
   return (
-    <div className="h-screen2 flex justify-center items-center pb-[72px]">
+    <div className="h-screen2 flex justify-center items-center pb-[72px] text-6xl">
       La page admin looooool
     </div>
   );
