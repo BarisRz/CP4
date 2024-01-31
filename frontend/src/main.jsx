@@ -13,6 +13,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
 import Admin from "./pages/Admin";
+import Profil from "./pages/Profil";
+import Game from "./pages/Game";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
       {
         path: "/admin",
         element: <Admin />,
+      },
+      {
+        path: "/profil",
+        element: <Profil />,
+      },
+      {
+        path: "/games/:id",
+        element: <Game />,
       },
     ],
   },

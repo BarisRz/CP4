@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useUser } from "../contexts/UserContext";
@@ -12,7 +12,9 @@ import adminlock from "../assets/adminlock.svg";
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const { user } = useUser();
+
   const imgRef = useRef(null);
+  const location = useLocation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -31,13 +33,16 @@ function Navbar() {
         setScrolled(!scrolled);
       }
     };
+    if (location.pathname.startsWith("/games")) {
+      setScrolled(true);
+    }
 
     document.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       document.removeEventListener("scroll", handleScroll);
     };
-  }, [scrolled]);
+  }, [scrolled, location]);
 
   return (
     <div

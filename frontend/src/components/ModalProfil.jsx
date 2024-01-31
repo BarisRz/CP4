@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 
 import { useUser } from "../contexts/UserContext";
@@ -47,7 +47,7 @@ function ModalProfil({ closeModal, anchor, scrolled }) {
       exit={{ opacity: 0 }}
       type="button"
       onClick={closeModal}
-      className="fixed inset-0 cursor-default"
+      className="fixed inset-0 cursor-default z-20"
     >
       <button
         type="button"
@@ -60,20 +60,24 @@ function ModalProfil({ closeModal, anchor, scrolled }) {
           left: position ? position.left - 80 : 0,
         }}
       >
-        <button type="button" className="flex items-center gap-2">
+        <NavLink
+          to="/profil"
+          className="flex items-center gap-2 link-profil"
+          onClick={closeModal}
+        >
           <img src={profilsettings} alt="profil settings" className="w-6" />
           Profil
-        </button>
+        </NavLink>
         <div className="w-full h-[1px] bg-white self-center" />
-        <button type="button" className="flex items-center gap-2">
+        <NavLink to="/mylist" className="flex items-center gap-2 link-profil">
           <img src={list} alt="profil settings" className="w-6" />
           My list(s)
-        </button>
+        </NavLink>
         <div className="w-full h-[1px] bg-white self-center" />
-        <button type="button" className="flex items-center gap-2">
+        <NavLink to="favorite" className="flex items-center gap-2 link-profil">
           <img src={favorite} alt="profil settings" className="w-6" />
           My favorite(s)
-        </button>
+        </NavLink>
         <div className="w-full h-[1px] bg-white self-center" />
         <button
           onClick={(e) => {
@@ -81,7 +85,7 @@ function ModalProfil({ closeModal, anchor, scrolled }) {
             closeModal();
           }}
           type="button"
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 link-profil"
         >
           <img src={logout} alt="profil settings" className="w-6" />
           Log Out

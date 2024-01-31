@@ -13,3 +13,7 @@ CREATE TABLE `played` (
   `liked` BOOLEAN DEFAULT 0,
   FOREIGN KEY (`userId`) REFERENCES `utilisateur`(`id`) ON DELETE CASCADE
 );
+
+ALTER TABLE `played` 
+ADD COLUMN `rating` INT DEFAULT NULL 
+CHECK (rating >= 1 AND rating <= 5);

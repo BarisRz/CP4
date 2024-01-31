@@ -19,7 +19,11 @@ function Admin() {
       });
   }, []);
 
-  return <div>La page admin looooool</div>;
+  return (
+    <div className="h-screen2 flex justify-center items-center pb-[72px]">
+      La page admin looooool
+    </div>
+  );
 }
 
 export default Admin;
