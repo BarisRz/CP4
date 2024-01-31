@@ -36,7 +36,7 @@ function Home() {
 
   return (
     <AnimatedPage>
-      <div className="landing h-screen2 flex items-center">
+      <div className="landing h-screen2 flex items-center pb-[72px]">
         <div className="flex-1">
           <motion.p
             initial={{ opacity: 0, x: 100 }}

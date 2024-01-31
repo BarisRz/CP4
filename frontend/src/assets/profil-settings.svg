@@ -1,0 +1,22 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
+<svg width="800px" height="800px" viewBox="0 0 64 64" data-name="Layer 1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+<g id="SVGRepo_bgCarrier" stroke-width="0"/>
+<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="SVGRepo_iconCarrier">
+<defs>
+<style>.cls-1{fill:#26ccf2;}.cls-2{fill:#26ccf2;}</style>
+</defs>
+<title/>
+<path class="cls-1" d="M15.61,39.84a2,2,0,0,1-2-2V8.92a2,2,0,0,1,4,0V37.84A2,2,0,0,1,15.61,39.84Z"/>
+<path class="cls-1" d="M15.61,57.08a2,2,0,0,1-2-2v-6a2,2,0,0,1,4,0v6A2,2,0,0,1,15.61,57.08Z"/>
+<path class="cls-1" d="M32,37.82a2,2,0,0,1-2-2V26.16a2,2,0,1,1,4,0v9.66A2,2,0,0,1,32,37.82Z"/>
+<path class="cls-1" d="M32,57.08a2,2,0,0,1-2-2v-8a2,2,0,1,1,4,0v8A2,2,0,0,1,32,57.08Z"/>
+<path class="cls-1" d="M32,16.92a2,2,0,0,1-2-2v-6a2,2,0,0,1,4,0v6A2,2,0,0,1,32,16.92Z"/>
+<path class="cls-1" d="M48.39,33.84a2,2,0,0,1-2-2V8.92a2,2,0,0,1,4,0V31.84A2,2,0,0,1,48.39,33.84Z"/>
+<path class="cls-1" d="M48.39,57.08a2,2,0,0,1-2-2v-12a2,2,0,0,1,4,0v12A2,2,0,0,1,48.39,57.08Z"/>
+<path class="cls-2" d="M15.61,51.08a7.62,7.62,0,1,1,7.61-7.62A7.62,7.62,0,0,1,15.61,51.08Zm0-11.24a3.62,3.62,0,1,0,3.61,3.62A3.62,3.62,0,0,0,15.61,39.84Z"/>
+<path class="cls-2" d="M32,28.16a7.62,7.62,0,1,1,7.62-7.62A7.62,7.62,0,0,1,32,28.16Zm0-11.24a3.62,3.62,0,1,0,3.62,3.62A3.62,3.62,0,0,0,32,16.92Z"/>
+<path class="cls-2" d="M48.39,45.08A7.63,7.63,0,1,1,56,37.46,7.62,7.62,0,0,1,48.39,45.08Zm0-11.24a3.6,3.6,0,1,0,2.9,1.44A3.62,3.62,0,0,0,48.39,33.84Z"/>
+</g>
+</svg>

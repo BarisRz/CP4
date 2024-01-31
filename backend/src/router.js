@@ -32,7 +32,8 @@ router.post("/login", verifyPassword, userControllers.login);
     "pseudo" : "admin",
     "password": "rootroot"
 } */
-router.post("/admin", verifyToken, userControllers.admin);
+router.get("/logout", userControllers.logout);
+router.get("/admin", verifyToken, userControllers.admin);
 
 router.post("/users/played/:id", alreadyInYourList, userControllers.addgame);
 /* http://localhost:3310/api/users/played/836951 lien exemple

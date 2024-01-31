@@ -90,16 +90,25 @@ const update = async (req, res) => {
 const login = async (req, res) => {
   try {
     const utilisateur = req.user;
-    const token = jwt.sign({ utilisateur }, process.env.APP_SECRET);
-    res.cookie("tokenPlayLog", token, { httpOnly: true });
+    const tokenPlayLog = jwt.sign({ utilisateur }, process.env.APP_SECRET);
+    res.cookie("tokenPlayLog", tokenPlayLog, { httpOnly: true });
     res.json({ utilisateur });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
 
+const logout = async (req, res) => {
+  try {
+    res.clearCookie("tokenPlayLog");
+    res.sendStatus(200);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 const admin = async (req, res) => {
-  res.status(200).json({ message: "Welcome to the admin page" });
+  res.sendStatus(200);
 };
 
 // Ready to export the controller functions
@@ -109,6 +118,7 @@ module.exports = {
   readAll,
   update,
   login,
+  logout,
   admin,
   find,
 };

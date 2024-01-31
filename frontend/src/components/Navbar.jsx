@@ -1,14 +1,28 @@
 import { NavLink } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useUser } from "../contexts/UserContext";
+
+import ModalProfil from "./ModalProfil";
 
 import search from "../assets/search.svg";
 import loggedicon from "../assets/user-icon.svg";
+import adminlock from "../assets/adminlock.svg";
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const { user } = useUser();
+  const imgRef = useRef(null);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleImageClick = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -111,6 +125,13 @@ function Navbar() {
               placeholder="Search for a game"
             />
           </div>
+          {user.admin ? (
+            <NavLink to="/admin">
+              <img src={adminlock} alt="admin icon" className="w-10" />
+            </NavLink>
+          ) : (
+            ""
+          )}
           {!user ? (
             <>
               <div className="hover:scale-105 transition">
@@ -131,14 +152,25 @@ function Navbar() {
               </div>
             </>
           ) : (
-            <div>
+            <button type="button" onClick={handleImageClick}>
               <img
                 src={loggedicon}
+                ref={imgRef}
                 alt="logged icon"
                 className="w-11 cursor-pointer"
+                id="profil-icon"
               />
-            </div>
+            </button>
           )}
+          <AnimatePresence>
+            {isModalOpen && (
+              <ModalProfil
+                closeModal={closeModal}
+                anchor={imgRef}
+                scrolled={scrolled}
+              />
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </div>
