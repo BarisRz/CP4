@@ -4,17 +4,13 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 import { useUser } from "../contexts/UserContext";
+import GameInteraction from "../components/GameInteraction";
 
 function Game() {
   const { user, setUser } = useUser();
   const { id } = useParams();
   const [game, setGame] = useState({});
-  const [rating, setRating] = useState(0);
-  const [refresh, setRefresh] = useState(false);
 
-  const handleRating = (rate) => {
-    setRating(rate);
-  };
   const API_KEY = import.meta.env.VITE_API_KEY;
   const url = `https://api.rawg.io/api/games/${id}?key=${API_KEY}`;
 
@@ -26,11 +22,6 @@ function Game() {
         setGame(response.data);
       })
       .catch((error) => console.error("Error:", error));
-  }, []);
-
-  useEffect(() => {
-    if (user !== false) {
-    }
   }, []);
 
   return (
@@ -82,19 +73,22 @@ function Game() {
         </div>
       </div>
       <div className="flex items-center justify-center py-8 bg-gradient-to-r from-primary to-secondary/[0]">
-        <div className="flex items-center">
-          <Rating
-            onClick={handleRating}
-            className="custom-rating"
-            SVGclassName="inline-block"
-            initialValue={game.rating}
-            transition
-            allowFraction
-            fillColor="#26ccf2"
-            emptyColor="#333232"
-          />
-          <p>({game.rating})</p>
-        </div>
+        {user === false ? (
+          <div className="flex items-center">
+            <Rating
+              className="custom-rating"
+              SVGclassName="inline-block"
+              readonly
+              initialValue={game.rating}
+              allowFraction
+              fillColor="#26ccf2"
+              emptyColor="#333232"
+            />
+            <p>({game.rating})</p>
+          </div>
+        ) : (
+          <GameInteraction game={game} />
+        )}
       </div>
       <div className="flex flex-wrap items-center gap-2 p-4 bg-gradient-to-l from-primary to-secondary/[0]">
         <p className="font-bold">Community Tags:</p>

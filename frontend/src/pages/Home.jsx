@@ -8,7 +8,10 @@ import arrowb from "../assets/arrowb.svg";
 import GameThumbnail from "../components/GameThumbnail";
 import AnimatedPage from "../components/AnimatedPage";
 
+import { useUser } from "../contexts/UserContext";
+
 function Home() {
+  const { user } = useUser();
   const API_KEY = import.meta.env.VITE_API_KEY;
   const url = `https://api.rawg.io/api/games?key=${API_KEY}`;
 
@@ -56,7 +59,7 @@ function Home() {
           >
             The Game You Enjoy
           </motion.p>
-          <NavLink to="popular">
+          <NavLink to={`${user ? "popular" : "login"}`}>
             <button
               type="button"
               className="p-2 px-4 mt-4 bg-gradient-to-r from-secondary to-blue-500 font-bold rounded-2xl flex items-center gap-2"
