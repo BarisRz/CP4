@@ -15,7 +15,7 @@ function GameThumbnail({ game }) {
           }}
         />
         <div className="flex-1 border-black border text-base text-center font-medium text-white p-2 rounded-b-2xl flex flex-col relative">
-          <p className="flex-2">{game.name}</p>
+          <p className="h-full flex justify-center items-center">{game.name}</p>
           <div className="absolute w-[40px] h-[40px] bg-secondary text-black font-black self-end bottom-[173px] right-[3px] flex justify-center items-center rounded-full">
             {game.rating}
           </div>
