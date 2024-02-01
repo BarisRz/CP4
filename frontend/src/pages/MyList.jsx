@@ -79,7 +79,7 @@ function MyList() {
           Rated
         </button>
       </div>
-      <div className="flex flex-wrap gap-6 mt-4">
+      <div className="flex flex-wrap gap-6 mt-4 mb-[72px]">
         {userList.map((game) => (
           <GameThumbnailFETCH
             key={game.gameId}
