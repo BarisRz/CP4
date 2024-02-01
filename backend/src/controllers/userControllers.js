@@ -65,6 +65,22 @@ const readAll = async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 };
+const readFavorite = async (req, res) => {
+  try {
+    // Fetch all items from the database
+    const games = await tables.utilisateur.getFavoriteGame(req.params.pseudo);
+
+    // Respond with the items in JSON format
+    if (games.length === 0) {
+      res.status(404).json({ error: "No games found" });
+    } else {
+      res.json(games);
+    }
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    res.status(400).json({ error: err.message });
+  }
+};
 
 const update = async (req, res) => {
   try {
@@ -152,4 +168,5 @@ module.exports = {
   find,
   deleteFromList,
   checkGame,
+  readFavorite,
 };

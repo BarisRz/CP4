@@ -23,7 +23,6 @@ function Home() {
     axios
       .get(`${url}${"&page_size=5"}`)
       .then((response) => {
-        console.info("recommended: ", response.data.results);
         setRecommendedGames(response.data.results);
       })
       .catch((error) => console.error("Error:", error));
@@ -31,7 +30,6 @@ function Home() {
     axios
       .get(`${url}${"&ordering=-metacritic&page_size=5"}`)
       .then((response) => {
-        console.info("metacritic: ", response.data.results);
         setMetacriticGames(response.data.results);
       })
       .catch((error) => console.error("Error:", error));

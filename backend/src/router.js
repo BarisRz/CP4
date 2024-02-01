@@ -52,6 +52,7 @@ router.put("/users/played/:id", userControllers.update);
 
 router.get("/users/list/:pseudo", userControllers.readAll);
 // http://localhost:3310/api/users/list/pseudo
+router.get("/users/favorite/:pseudo", userControllers.readFavorite);
 
 router.delete("/users/list/:gameId", userControllers.deleteFromList);
 router.post("/users/game/:gameId", userControllers.checkGame);

@@ -15,6 +15,8 @@ import SignUp from "./pages/Signup";
 import Admin from "./pages/Admin";
 import Profil from "./pages/Profil";
 import Game from "./pages/Game";
+import MyList from "./pages/MyList";
+import Popular from "./pages/Popular";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
       {
         path: "/games/:id",
         element: <Game />,
+      },
+      {
+        path: "/mylist",
+        element: <MyList />,
+      },
+      {
+        path: "/popular/:searchTerm?",
+        element: <Popular />,
       },
     ],
   },

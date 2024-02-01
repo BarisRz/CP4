@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useUser } from "../contexts/UserContext";
@@ -10,6 +10,14 @@ import loggedicon from "../assets/user-icon.svg";
 import adminlock from "../assets/adminlock.svg";
 
 function Navbar() {
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    navigate(`/popular/${searchTerm}`);
+  };
+
   const [scrolled, setScrolled] = useState(false);
   const { user } = useUser();
 
@@ -33,10 +41,9 @@ function Navbar() {
         setScrolled(!scrolled);
       }
     };
-    if (location.pathname.startsWith("/games")) {
+    if (location.pathname !== "/") {
       setScrolled(true);
     }
-
     document.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
@@ -54,12 +61,13 @@ function Navbar() {
         <div className="flex items-center gap-4 font-bold">
           <NavLink
             to="/"
-            onClick={() =>
+            onClick={() => {
               window.scrollTo({
                 top: 0,
                 behavior: "smooth",
-              })
-            }
+              });
+              setScrolled(false);
+            }}
           >
             <motion.svg
               width="40"
@@ -117,7 +125,8 @@ function Navbar() {
           </NavLink>
         </div>
         <div className="flex items-center gap-2">
-          <div
+          <form
+            onSubmit={handleSearch}
             className="flex items-center rounded-3xl px-2 py-1"
             style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}
           >
@@ -126,10 +135,12 @@ function Navbar() {
               type="search"
               name=""
               id=""
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className="px-2 w-10/12 bg-transparent outline-none"
               placeholder="Search for a game"
             />
-          </div>
+          </form>
           {user.admin ? (
             <NavLink to="/admin">
               <img

@@ -64,6 +64,17 @@ class UserManager extends AbstractManager {
     return rows;
   }
 
+  async getFavoriteGame(pseudo) {
+    // Execute the SQL SELECT query to retrieve all unique games from the "played" table
+    const [rows] = await this.database.query(
+      `SELECT u.pseudo, p.gameId, p.userId, p.liked, p.rating FROM ${this.table} u INNER JOIN played p ON u.id = p.userId WHERE u.pseudo = ? AND p.liked = 1`,
+      [pseudo]
+    );
+
+    // Return the array of unique games
+    return rows;
+  }
+
   async getGame(userId, gameId) {
     const [result] = await this.database.query(
       `SELECT * FROM played WHERE userId = ? AND gameId = ?`,

@@ -18,7 +18,6 @@ function Game() {
     axios
       .get(url)
       .then((response) => {
-        console.info("game: ", response.data);
         setGame(response.data);
       })
       .catch((error) => console.error("Error:", error));
@@ -26,7 +25,7 @@ function Game() {
 
   return (
     <div className="flex flex-col pt-10 gap-2 w-full">
-      <div className="flex gap-2 w-full bg-gradient-to-l from-primary to-secondary/[0] py-4">
+      <div className="flex gap-2 w-full bg-gradient-to-l from-primary to-secondary/[0] py-4 rounded-2xl">
         {game?.background_image ? (
           <img
             src={game.background_image}
@@ -72,7 +71,7 @@ function Game() {
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-center py-8 bg-gradient-to-r from-primary to-secondary/[0]">
+      <div className="flex items-center justify-center py-8 bg-gradient-to-r from-primary to-secondary/[0] rounded-2xl">
         {user === false ? (
           <div className="flex items-center">
             <Rating
@@ -90,7 +89,7 @@ function Game() {
           <GameInteraction game={game} />
         )}
       </div>
-      <div className="flex flex-wrap items-center gap-2 p-4 bg-gradient-to-l from-primary to-secondary/[0]">
+      <div className="flex flex-wrap items-center gap-2 p-4 bg-gradient-to-l from-primary to-secondary/[0] rounded-2xl">
         <p className="font-bold">Community Tags:</p>
         {game?.tags?.map((tags) => (
           <p
@@ -103,7 +102,7 @@ function Game() {
       </div>
       <div
         dangerouslySetInnerHTML={{ __html: game.description }}
-        className="text-lg bg-primary p-4 mb-8"
+        className="text-lg bg-primary p-4 mb-8 rounded-2xl"
       />
     </div>
   );
