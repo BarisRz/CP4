@@ -25,6 +25,39 @@ html {
   );
 }
 
+/* Pour les navigateurs WebKit */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Pour Firefox */
+html {
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $primary;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(5, 80, 97);
+}
+
+/* Pour Firefox */
+html {
+  scrollbar-width: auto;
+  scrollbar-color: rgb(5, 80, 97) $primary;
+}
+
+body {
+  overflow-y: scroll; /* Pour rendre l'élément défilable */
+  -webkit-overflow-scrolling: auto; /* Pour rendre la barre de défilement flottante sur les appareils tactiles */
+}
+
 .underline-nav {
   position: absolute;
   top: 23px;

@@ -17,6 +17,7 @@ import Profil from "./pages/Profil";
 import Game from "./pages/Game";
 import MyList from "./pages/MyList";
 import Popular from "./pages/Popular";
+import LastReleased from "./pages/LastReleased";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/popular/:searchTerm?",
         element: <Popular />,
+      },
+      {
+        path: "/last-released",
+        element: <LastReleased />,
       },
     ],
   },

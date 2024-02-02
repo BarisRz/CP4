@@ -1,11 +1,9 @@
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import GameThumbnail from "../components/GameThumbnail";
 
-function Popular() {
-  const { searchTerm } = useParams();
+function LastReleased() {
   const [gamelist, setGamelist] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
@@ -14,9 +12,9 @@ function Popular() {
     setIsLoading(true);
     axios
       .get(
-        `https://api.rawg.io/api/games?key=${API_KEY}${
+        `https://api.rawg.io/api/games?ordering=released&key=${API_KEY}${
           page > 1 ? `&page=${page}` : ""
-        }${searchTerm ? `&search=${searchTerm}` : ""}`
+        }`
       )
       .then((response) => {
         setGamelist(response.data.results);
@@ -25,14 +23,11 @@ function Popular() {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [searchTerm, page]);
-  useEffect(() => {
-    setPage(1);
-  }, [searchTerm]);
+  }, [page]);
   return (
     <div className="flex flex-col gap-3 mt-4">
       <p className="text-6xl font-bold py-[72px] bg-gradient-to-l from-secondary/75 to-secondary/[0] rounded-2xl mb-2">
-        Popular Games
+        Last Released
       </p>
       <div className="flex flex-wrap gap-6 mb-[42px]">
         {isLoading ? (
@@ -88,4 +83,4 @@ function Popular() {
   );
 }
 
-export default Popular;
+export default LastReleased;
