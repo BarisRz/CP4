@@ -70,7 +70,6 @@ class UserManager extends AbstractManager {
       `SELECT u.pseudo, p.gameId, p.userId, p.liked, p.rating FROM ${this.table} u INNER JOIN played p ON u.id = p.userId WHERE u.pseudo = ? AND p.liked = 1`,
       [pseudo]
     );
-
     // Return the array of unique games
     return rows;
   }

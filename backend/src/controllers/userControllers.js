@@ -72,7 +72,7 @@ const readFavorite = async (req, res) => {
 
     // Respond with the items in JSON format
     if (games.length === 0) {
-      res.status(404).json({ error: "No games found" });
+      res.status(200).json([]);
     } else {
       res.json(games);
     }
