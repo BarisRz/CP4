@@ -27,7 +27,7 @@ function Profil() {
       );
       setTailleUserList(res.data.length);
       const userListData = [];
-      for (let i = 0; i < res.data.length && i < 5; i++) {
+      for (let i = 0; i < res.data.length && i < 5; i += 1) {
         const gameRes = await axios.get(
           `https://api.rawg.io/api/games/${res.data[i].gameId}?key=${API_KEY}`
         );
@@ -46,7 +46,7 @@ function Profil() {
       );
       setTailleFavoriteList(res.data.length);
       const favoriteListData = [];
-      for (let i = 0; i < res.data.length && i < 5; i++) {
+      for (let i = 0; i < res.data.length && i < 5; i += 1) {
         const gameRes = await axios.get(
           `https://api.rawg.io/api/games/${res.data[i].gameId}?key=${API_KEY}`
         );
