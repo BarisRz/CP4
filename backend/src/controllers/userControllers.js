@@ -108,7 +108,10 @@ const login = async (req, res) => {
   try {
     const utilisateur = req.user;
     const tokenPlayLog = jwt.sign({ utilisateur }, process.env.APP_SECRET);
-    res.cookie("tokenPlayLog", tokenPlayLog, { httpOnly: true });
+    res.cookie("tokenPlayLog", tokenPlayLog, {
+      httpOnly: true,
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+    });
     res.json({ utilisateur });
   } catch (err) {
     res.status(500).json({ error: err.message });

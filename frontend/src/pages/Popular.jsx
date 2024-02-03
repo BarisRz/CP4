@@ -10,6 +10,7 @@ function Popular() {
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const API_KEY = import.meta.env.VITE_API_KEY;
+
   useEffect(() => {
     setIsLoading(true);
     axios
@@ -26,9 +27,11 @@ function Popular() {
         setIsLoading(false);
       });
   }, [searchTerm, page]);
+
   useEffect(() => {
     setPage(1);
   }, [searchTerm]);
+
   return (
     <div className="flex flex-col gap-3 mt-4">
       <p className="text-6xl font-bold py-[72px] bg-gradient-to-l from-secondary/75 to-secondary/[0] rounded-2xl mb-2">
