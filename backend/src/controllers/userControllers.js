@@ -159,6 +159,20 @@ const checkGame = async (req, res) => {
   }
 };
 
+const protectedRoute = async (req, res) => {
+  const { id } = req.decoded;
+  try {
+    const [result] = await tables.utilisateur.readId(id);
+    if (!result) {
+      res.status(404).send("No user found");
+    }
+    delete result.password;
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 // Ready to export the controller functions
 module.exports = {
   add,
@@ -172,4 +186,5 @@ module.exports = {
   deleteFromList,
   checkGame,
   readFavorite,
+  protectedRoute,
 };

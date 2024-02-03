@@ -10,18 +10,19 @@ import "../styles/root.scss";
 function App() {
   const { setUser } = useUser();
   useEffect(() => {
-    const utilisateur = JSON.parse(window.localStorage.getItem("CP4_Player"));
-    if (utilisateur) {
-      axios
-        .get(`${import.meta.env.VITE_BACKEND_URL}/api/users/${utilisateur.id}`)
-        .then((res) => {
-          setUser(res.data);
-          window.localStorage.setItem("CP4_Player", JSON.stringify(res.data));
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/protected`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setUser(res.data);
+        window.localStorage.setItem("CP4_Player", JSON.stringify(res.data));
+      })
+      .catch((err) => {
+        setUser(false);
+        window.localStorage.removeItem("CP4_Player");
+        console.error(err);
+      });
   }, []);
 
   return (

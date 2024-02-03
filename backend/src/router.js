@@ -14,7 +14,7 @@ const userControllers = require("./controllers/userControllers");
 
 const { inscription, hashPassword } = require("./services/inscription");
 const { alreadyInYourList } = require("./services/list");
-const { verifyPassword, verifyToken } = require("./services/auth");
+const { verifyPassword, verifyToken, checkToken } = require("./services/auth");
 
 router.get("/users/:id", userControllers.find);
 
@@ -56,4 +56,6 @@ router.get("/users/favorite/:pseudo", userControllers.readFavorite);
 
 router.delete("/users/list/:gameId", userControllers.deleteFromList);
 router.post("/users/game/:gameId", userControllers.checkGame);
+
+router.get("/protected", checkToken, userControllers.protectedRoute);
 module.exports = router;

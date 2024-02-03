@@ -39,4 +39,23 @@ const verifyToken = async (req, res, next) => {
   }
 };
 
-module.exports = { verifyPassword, verifyToken };
+const checkToken = async (req, res, next) => {
+  const { tokenPlayLog } = req.cookies;
+  if (!tokenPlayLog) {
+    return res.status(403).send("Token non fournie");
+  }
+  try {
+    const decoded = jwt.verify(tokenPlayLog, process.env.APP_SECRET);
+    if (decoded) {
+      req.decoded = decoded.utilisateur;
+      return next();
+    }
+    res.clearCookie("tokenPlayLog");
+    return res.status(403).json({ error: "Token invalide" });
+  } catch (error) {
+    res.clearCookie("tokenPlayLog");
+    return res.status(403).json({ error: "Token invalide" });
+  }
+};
+
+module.exports = { verifyPassword, verifyToken, checkToken };

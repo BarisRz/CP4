@@ -18,6 +18,7 @@ import Game from "./pages/Game";
 import MyList from "./pages/MyList";
 import Popular from "./pages/Popular";
 import LastReleased from "./pages/LastReleased";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -40,16 +41,8 @@ const router = createBrowserRouter([
         element: <Admin />,
       },
       {
-        path: "/profil",
-        element: <Profil />,
-      },
-      {
         path: "/games/:id",
         element: <Game />,
-      },
-      {
-        path: "/mylist",
-        element: <MyList />,
       },
       {
         path: "/popular/:searchTerm?",
@@ -58,6 +51,19 @@ const router = createBrowserRouter([
       {
         path: "/last-released",
         element: <LastReleased />,
+      },
+      {
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "/profil",
+            element: <Profil />,
+          },
+          {
+            path: "/mylist",
+            element: <MyList />,
+          },
+        ],
       },
     ],
   },
