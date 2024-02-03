@@ -107,10 +107,12 @@ const update = async (req, res) => {
 const login = async (req, res) => {
   try {
     const utilisateur = req.user;
-    const tokenPlayLog = jwt.sign({ utilisateur }, process.env.APP_SECRET);
+    const tokenPlayLog = jwt.sign({ utilisateur }, process.env.APP_SECRET, {
+      expiresIn: "10d",
+    });
     res.cookie("tokenPlayLog", tokenPlayLog, {
       httpOnly: true,
-      maxAge: 30 * 24 * 60 * 60 * 1000,
+      maxAge: 10 * 24 * 60 * 60 * 1000,
     });
     res.json({ utilisateur });
   } catch (err) {
@@ -167,6 +169,17 @@ const protectedRoute = async (req, res) => {
       res.status(404).send("No user found");
     }
     delete result.password;
+    const tokenPlayLog = jwt.sign(
+      { utilisateur: result },
+      process.env.APP_SECRET,
+      {
+        expiresIn: "10d",
+      }
+    );
+    res.cookie("tokenPlayLog", tokenPlayLog, {
+      httpOnly: true,
+      maxAge: 10 * 24 * 60 * 60 * 1000,
+    });
     res.json(result);
   } catch (err) {
     res.status(500).json({ error: err.message });
