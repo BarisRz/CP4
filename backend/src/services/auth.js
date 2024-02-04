@@ -23,22 +23,6 @@ const verifyPassword = async (req, res, next) => {
   }
 };
 
-const verifyToken = async (req, res, next) => {
-  const { tokenPlayLog } = req.cookies;
-  if (!tokenPlayLog) {
-    return res.status(401).send("Token non fournie");
-  }
-  try {
-    const decoded = jwt.verify(tokenPlayLog, process.env.APP_SECRET);
-    if (decoded.utilisateur.admin === 0) {
-      return res.status(403).send("Vous n'êtes pas admin");
-    }
-    return next();
-  } catch (error) {
-    return res.status(401).json({ error: "Token invalide" });
-  }
-};
-
 const checkToken = async (req, res, next) => {
   const { tokenPlayLog } = req.cookies;
   if (!tokenPlayLog) {
@@ -58,4 +42,4 @@ const checkToken = async (req, res, next) => {
   }
 };
 
-module.exports = { verifyPassword, verifyToken, checkToken };
+module.exports = { verifyPassword, checkToken };

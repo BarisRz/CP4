@@ -14,7 +14,7 @@ const userControllers = require("./controllers/userControllers");
 
 const { inscription, hashPassword } = require("./services/inscription");
 const { alreadyInYourList } = require("./services/list");
-const { verifyPassword, verifyToken, checkToken } = require("./services/auth");
+const { verifyPassword, checkToken } = require("./services/auth");
 
 router.get("/users/:id", userControllers.find);
 
@@ -33,7 +33,7 @@ router.post("/login", verifyPassword, userControllers.login);
     "password": "rootroot"
 } */
 router.get("/logout", userControllers.logout);
-router.get("/admin", verifyToken, userControllers.admin);
+router.get("/admin", checkToken, userControllers.admin);
 
 router.post("/users/played/:id", alreadyInYourList, userControllers.addgame);
 /* http://localhost:3310/api/users/played/836951 lien exemple

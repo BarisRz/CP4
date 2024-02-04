@@ -130,7 +130,11 @@ const logout = async (req, res) => {
 };
 
 const admin = async (req, res) => {
-  res.sendStatus(200);
+  const verifyAdmin = req.decoded.admin;
+  if (verifyAdmin === 0) {
+    return res.status(403).send("Vous n'êtes pas admin");
+  }
+  return res.sendStatus(200);
 };
 
 const deleteFromList = async (req, res) => {
