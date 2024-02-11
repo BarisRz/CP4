@@ -91,7 +91,7 @@ function Profil() {
           <div className="flex justify-between items-center">
             <p className="text-2xl font-bold self-end">Your favorite</p>
             <NavLink
-              to="/mylist"
+              to="/mylist/favorites"
               className="flex items-center font-bold rounded-2xl p-2 px-4 bg-gradient-to-r from-secondary to-blue-500"
             >
               See the whole list

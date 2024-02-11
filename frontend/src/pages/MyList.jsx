@@ -1,27 +1,34 @@
 import { useEffect, useState } from "react";
-import { useUser } from "../contexts/UserContext";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
+import { useUser } from "../contexts/UserContext";
 import GameThumbnailFETCH from "../components/GameThumbnailFETCH";
 
 function MyList() {
   const { user } = useUser();
+  const { filter } = useParams();
   const [userList, setUserList] = useState([]);
   const [copieUserList, setCopieUserList] = useState([]);
-  const [whichButton, setWhichButton] = useState("all");
-
-  // /api/users/list/admin
+  const [whichButton, setWhichButton] = useState(filter || "all");
 
   useEffect(() => {
     if (!user.pseudo) return;
+    setWhichButton("all");
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/users/list/${user.pseudo}`)
       .then((res) => {
-        setUserList(res.data);
-        setCopieUserList(res.data);
+        let { data } = res;
+        setCopieUserList(data);
+        if (filter) {
+          data = data.filter((game) => game.liked !== 0);
+          setWhichButton("favorites");
+        }
+        setUserList(data);
       })
       .catch((err) => console.error(err));
-  }, [user.pseudo]);
+  }, [user.pseudo, filter]);
+
   return (
     <div className="flex flex-col gap-2 mt-4">
       <div>

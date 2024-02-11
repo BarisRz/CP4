@@ -60,7 +60,7 @@ const router = createBrowserRouter([
             element: <Profil />,
           },
           {
-            path: "/mylist",
+            path: "/mylist/:filter?",
             element: <MyList />,
           },
         ],

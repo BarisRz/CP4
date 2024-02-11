@@ -102,7 +102,7 @@ function Game() {
       </div>
       <div
         dangerouslySetInnerHTML={{ __html: game.description }}
-        className="text-lg bg-primary p-4 mb-8 rounded-2xl"
+        className="text-lg bg-primary p-8 mb-8 rounded-2xl"
       />
     </div>
   );

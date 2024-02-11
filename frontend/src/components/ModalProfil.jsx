@@ -79,7 +79,7 @@ function ModalProfil({ closeModal, anchor, scrolled }) {
         </NavLink>
         <div className="w-full h-[1px] bg-white self-center" />
         <NavLink
-          to="/mylist"
+          to="/mylist/favorites"
           className="flex items-center gap-2 link-profil"
           onClick={closeModal}
         >

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import notfound from "../assets/notfound.jpg";
+
 function GameThumbnail({ game }) {
   const [gameId, setGameId] = useState(game.id);
   return (
@@ -9,7 +11,9 @@ function GameThumbnail({ game }) {
         <div
           className=" bg-transparent h-[140px] flex-2"
           style={{
-            backgroundImage: `url(${game.background_image})`,
+            backgroundImage: `url(${
+              game.background_image ? game.background_image : notfound
+            })`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
