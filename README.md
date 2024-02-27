@@ -1,79 +1,73 @@
-## Concept
+# PlayLog
 
-This template is meant to serve as a foundation for every P2/P3 following the React-Express-MySQL stack, as learned in Wild Code School.
-It's pre-configured with a set of tools which'll help students produce industry-quality and easier-to-maintain code, while staying a pedagogical tool.
+Bienvenue sur PlayLog, votre plateforme de suivi de jeux vidéo inspirée de Letterboxd !
 
-## Setup & Use
+## Description
 
-### Windows users
+PlayLog est un site web qui permet aux utilisateurs de suivre, de noter et d'organiser leurs jeux vidéo de la même manière que Letterboxd le fait pour les films. Vous pouvez créer une liste personnalisée de jeux auxquels vous avez joué, les jeux que vous voulez jouer, ceux que vous avez terminés, et plus encore. De plus, vous pouvez attribuer des notes et marquer vos jeux préférés.
 
-Be sure to run these commands in a git terminal to avoid [issues with newline formats](https://en.wikipedia.org/wiki/Newline#Issues_with_different_newline_formats):
+## Fonctionnalités
 
-```
-git config --global core.eol lf
-git config --global core.autocrlf false
-```
+- **Liste de jeux :** Créez des listes personnalisées pour suivre les jeux que vous avez joués, que vous voulez jouer, que vous avez terminés, etc.
+- **Notation :** Attribuez une note à chaque jeu pour exprimer votre opinion.
+- **Statut de jeu :** Indiquez si vous avez joué à un jeu, si vous l'avez terminé.
+- **Favoris :** Marquez vos jeux préférés pour les retrouver facilement.
+- **Connexion utilisateur :** Connectez-vous pour accéder à des fonctionnalités avancées comme la sauvegarde de vos listes et notes.
 
-### Project Initialization
+## Utilisation
 
-- In VSCode, install plugins **Prettier - Code formatter** and **ESLint** and configure them
-- Clone this repo, enter it
-- Run command `npm install`
-- Create environment files (`.env`) in both `backend` and `frontend`: you can copy `.env.sample` files as starters (**don't** delete them)
+1. **Inscription/Connexion :** Créez un compte ou connectez-vous à votre compte existant.
+2. **Recherche de jeux :** Utilisez la fonction de recherche pour trouver les jeux que vous souhaitez ajouter à votre liste.
+3. **Ajout à la liste :** Une fois sur la page d'un jeu, ajoutez-le à votre liste en choisissant le statut correspondant (joué, à jouer, terminé, etc.).
+4. **Notation et commentaires :** Attribuez une note au jeu et ajoutez des commentaires pour partager votre expérience.
+5. **Gestion de liste :** Consultez et gérez vos listes depuis votre profil.
 
-### Available Commands
+## Captures d'écran
 
-- `db:migrate` : Run the database migration script
-- `db:seed` : Run the database seed script
-- `dev` : Starts both servers (frontend + backend) in one terminal
-- `dev-front` : Starts the React frontend server
-- `dev-back` : Starts the Express backend server
-- `lint` : Runs validation tools (will be executed on every _commit_, and refuse unclean code)
+![Capture d'écran 1](illustrations/accueil.png)
 
-## FAQ
+### Accéder aux jeux les plus populaires au sein de la communauté:
 
-### Tools
+![Capture d'écran 3](illustrations/popular.png)
 
-- _Concurrently_ : Allows for several commands to run concurrently in the same CLI
-- _Husky_ : Allows to execute specific commands that trigger on _git_ events
-- _Vite_ : Alternative to _Create-React-App_, packaging less tools for a more fluid experience
-- _ESLint_ : "Quality of code" tool, ensures chosen rules will be enforced
-- _Prettier_ : "Quality of code" tool as well, focuses on the styleguide
-- _ Airbnb Standard_ : One of the most known "standards", even though it's not officially linked to ES/JS
+### Avoir plus de détail sur un jeu:
 
-## Deployment with Traefik
+![Capture d'écran 3](illustrations/jeusanslogin.png)
 
-> ⚠️ Prerequisites : You must have installed and configured Traefik on your VPS beforehand.
-> https://github.com/WildCodeSchool/vps-traefik-starter-kit/
+### La majorité des fonctionnalités du site se débloque une fois que vous êtes connectés:
 
-For deployment, you have to go to `secrets` → app `actions` on the github repo to insert via `New repository secret` :
+![Capture d'écran 2](illustrations/login.png)
 
-- SSH_HOST : IP address of your VPS
-- SSH_USER : SSH login to your VPS
-- SSH_PASSWORD : SSH connection password to your VPS
+### Par exemple, maintenant sur la page d'un jeu vous avez accès à la notations et à l'ajout dans votre liste:
 
-And a public variable from the tab `/settings/variables/actions` :
+![Capture d'écran 2](illustrations/jeulogin.png)
 
-- PROJECT_NAME : the name of the project used to create the subdomain.
+## Technologies utilisées
 
-> ⚠️ Warning : underscores are not allowed. They can cause trouble with the let's encrypt certificate
+- Frontend: ViteJS, React, Tailwind, react-router-dom
+- Backend : Express (node.js)
+- Base de données : MySQL
+- API Externe : rawg.io
 
-Use this same tab to add the other environment variables required for the project if any.
+## Le lancer chez vous
 
-Only the backend will be accessible. The root path `"/"` will redirect to the dist folder on your frontend. In order to allow that, please uncomment the line as explain on `backend/src/app.js` (Line 102).
-Because the backend will serve the front, the global variable VITE_BACKEND_URL will be set with an empty string.
+- Cloner le repo
+- Configurez les fichiers .env dans les dossiers /frontend et /backend en suivant les exemples fournis
+- Se fournir d'une clé API rawg.io pour le bon fonctionnement du site
+- Exécutez dans le terminal depuis la racine du projet : `npm install`
+- Puis `npm run dev` pour lancer le tout
 
-Your url will be ` https://${PROJECT-NAME}.${subdomain}.wilders.dev/`.
+## Endpoints API :
 
-### About the database
+### Utilisateur:
 
-The database is automaticaly deployed with the name of your repo. During the build of the projet (`docker-entry.sh`), the `node migrate.js` command is executed in the backend. If you want to seed automaticaly your database using the `seed.js` script, replace the command _build_ on you `backend/package.json` by `node migrate.js && node seed.js`.
+- POST /api/users : Sert à la création d'un compte
+- POST /api/login : Sert à l'authentification et à l'envoie d'un token avec les infos de l'utilisateurs dans un cookie
+- GET /api/logout : Sert à la déconnexion tout en veillant à supprimer le cookie du navigateur de l'utilisateur
+- GET /api/users/:id : Renvoie les infos d'un utilisteurs
 
-### About public assets (pictures, fonts...)
+### Jeu :
 
-Don't use any public folder on your frontend. This folder won't be accessible online. You may move your public assets in the `backend/public` folder. Prefer [static assets](https://vitejs.dev/guide/assets) when possible.
-
-### About Logs
-
-If you want to access the logs of your online projet (to follow the deployement or to watch any bug error), connect to your VPS (`ssh user@host`).
-Then, go on your specific project and run  `docker compose logs -t -f`.
+- POST /api/users/played/:id : Ajout d'un jeu si l'utilisateur est connecté dans sa liste
+- PUT /api/users/played/:id : Change l'état d'un jeu dans la liste d'un utilisateur (par exemple l'enlever des favoris)
+- DELETE /api/list/:gameId : Suppression d'un jeu de la liste d'un utilisateur
