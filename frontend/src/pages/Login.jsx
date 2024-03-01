@@ -30,10 +30,6 @@ function Login() {
       if (res.status === 200) {
         success(`Welcome ${utilisateur.pseudo}!`);
         setUser(res.data.utilisateur);
-        window.localStorage.setItem(
-          "CP4_Player",
-          JSON.stringify(res.data.utilisateur)
-        );
         navigate("/", { replace: true });
       }
     } catch (error) {

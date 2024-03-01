@@ -16,11 +16,9 @@ function App() {
       })
       .then((res) => {
         setUser(res.data);
-        window.localStorage.setItem("CP4_Player", JSON.stringify(res.data));
       })
       .catch((err) => {
         setUser(false);
-        window.localStorage.removeItem("CP4_Player");
         console.error(err);
       });
   }, []);

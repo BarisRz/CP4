@@ -29,7 +29,6 @@ function ModalProfil({ closeModal, anchor, scrolled }) {
         }
       );
       if (res.status === 200) {
-        localStorage.removeItem("CP4_Player");
         setUser(false);
         success(`Vous avez été déconnecté !`);
         navigate("/", { replace: true });
