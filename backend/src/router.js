@@ -35,13 +35,18 @@ router.post("/login", verifyPassword, userControllers.login);
 router.get("/logout", userControllers.logout);
 router.get("/admin", checkToken, userControllers.admin);
 
-router.post("/users/played/:id", alreadyInYourList, userControllers.addgame);
+router.post(
+  "/users/played/:id",
+  checkToken,
+  alreadyInYourList,
+  userControllers.addgame
+);
 /* http://localhost:3310/api/users/played/836951 lien exemple
 {
     "id" : 1,
     "liked" : 1
 } */
-router.put("/users/played/:id", userControllers.update);
+router.put("/users/played/:id", checkToken, userControllers.update);
 /*
 {
     "id" : 1,
@@ -50,12 +55,16 @@ router.put("/users/played/:id", userControllers.update);
 }
 */
 
-router.get("/users/list/:pseudo", userControllers.readAll);
+router.get("/users/list/:pseudo", checkToken, userControllers.readAll);
 // http://localhost:3310/api/users/list/pseudo
-router.get("/users/favorite/:pseudo", userControllers.readFavorite);
+router.get("/users/favorite/:pseudo", checkToken, userControllers.readFavorite);
 
-router.delete("/users/list/:gameId", userControllers.deleteFromList);
-router.post("/users/game/:gameId", userControllers.checkGame);
+router.delete(
+  "/users/list/:gameId",
+  checkToken,
+  userControllers.deleteFromList
+);
+router.post("/users/game/:gameId", checkToken, userControllers.checkGame);
 
 router.get("/protected", checkToken, userControllers.protectedRoute);
 module.exports = router;

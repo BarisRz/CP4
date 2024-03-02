@@ -23,7 +23,8 @@ function GameInteraction({ game }) {
     axios
       .post(
         `${import.meta.env.VITE_BACKEND_URL}/api/users/game/${game.id}`,
-        bodyrequest
+        bodyrequest,
+        { withCredentials: true }
       )
       .then((res) => {
         setIsRated(res.data.rating);
@@ -44,7 +45,7 @@ function GameInteraction({ game }) {
       try {
         const res = await axios.delete(
           `${import.meta.env.VITE_BACKEND_URL}/api/users/list/${gametohandle}`,
-          { data: { id: user.id } }
+          { data: { id: user.id }, withCredentials: true }
         );
         if (res.status === 200) {
           setRefresh(!refresh);
@@ -63,7 +64,8 @@ function GameInteraction({ game }) {
           `${
             import.meta.env.VITE_BACKEND_URL
           }/api/users/played/${gametohandle}`,
-          body
+          body,
+          { withCredentials: true }
         );
         if (res.status === 201) {
           setRefresh(!refresh);
@@ -83,7 +85,8 @@ function GameInteraction({ game }) {
       try {
         const res = await axios.post(
           `${import.meta.env.VITE_BACKEND_URL}/api/users/played/${game.id}`,
-          body
+          body,
+          { withCredentials: true }
         );
         if (res.status === 201) {
           setRefresh(!refresh);
@@ -100,7 +103,8 @@ function GameInteraction({ game }) {
       try {
         const res = await axios.put(
           `${import.meta.env.VITE_BACKEND_URL}/api/users/played/${game.id}`,
-          body
+          body,
+          { withCredentials: true }
         );
         if (res.status === 200) {
           setRefresh(!refresh);

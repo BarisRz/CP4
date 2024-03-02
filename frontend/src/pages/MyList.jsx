@@ -16,7 +16,10 @@ function MyList() {
     if (!user.pseudo) return;
     setWhichButton("all");
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/api/users/list/${user.pseudo}`)
+      .get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/users/list/${user.pseudo}`,
+        { withCredentials: true }
+      )
       .then((res) => {
         let { data } = res;
         setCopieUserList(data);

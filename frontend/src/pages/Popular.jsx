@@ -38,7 +38,7 @@ function Popular() {
       <p className="text-6xl font-bold py-[72px] bg-gradient-to-l from-secondary/75 to-secondary/[0] rounded-2xl mb-2">
         Popular Games
       </p>
-      <div className="flex flex-wrap gap-6 mb-[42px]">
+      <div className="flex flex-wrap gap-6 mb-[42px] max-[1200px]:gap-0">
         {isLoading ? (
           <LoadingSVG />
         ) : (

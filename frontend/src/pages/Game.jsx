@@ -25,20 +25,20 @@ function Game() {
 
   return (
     <div className="flex flex-col pt-10 gap-2 w-full">
-      <div className="flex gap-2 w-full bg-gradient-to-l from-primary to-secondary/[0] py-4 rounded-2xl">
+      <div className="flex gap-2 w-full bg-gradient-to-l from-primary to-secondary/[0] py-4 rounded-2xl max-[1200px]:flex-col">
         {game?.background_image ? (
           <img
             src={game.background_image}
             alt={`the game ${game.name}`}
-            className="w-[500px] h-[280x] object-cover border-2 border-secondary shadow-2xl"
+            className="w-[500px] h-[280x] object-cover border-2 border-secondary shadow-2xl max-[700px]:w-[350px] max-[700px]:h-[190px]"
           />
         ) : (
-          <div className="w-[500px] h-[280px] object-cover border-2 border-secondary shadow-2xl flex justify-center items-center text-xl">
+          <div className="w-[500px] h-[280px] object-cover border-2 border-secondary shadow-2xl flex justify-center items-center text-xl max-[700px]:w-[350px] max-[700px]:h-[190px]">
             No image available 😱
           </div>
         )}
-        <div className="h-[284px] flex flex-col justify-between">
-          <p className="font-extrabold text-5xl w-full bg-gradient-to-r from-secondary to-secondary/[0]">
+        <div className="h-[284px] flex flex-col justify-between max-[1200px]:h-auto">
+          <p className="font-extrabold text-5xl w-full bg-gradient-to-r from-secondary to-secondary/[0] max-[700px]:text-2xl">
             {game.name}
           </p>
           <div className="pt-4 flex flex-col gap-1">

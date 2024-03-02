@@ -41,17 +41,17 @@ function Login() {
   return (
     <AnimatedPage>
       <div
-        className="flex flex-col items-center justify-center h-screen2 pb-[72px] bg-center bg-no-repeat"
+        className="flex flex-col items-center justify-center h-screen2 pb-[72px] bg-center bg-no-repeat max-[700px]:pb-0"
         style={{ backgroundImage: `url(${hero})` }}
       >
         <form
           onSubmit={handleSubmit}
           method="POST"
-          className="flex flex-col items-center justify-center gap-6 bg-primary w-[500px] h-[550px] rounded-2xl shadow-2xl shadow-black"
+          className="flex flex-col items-center justify-center gap-6 bg-primary w-[500px] h-[550px] rounded-2xl shadow-2xl shadow-black max-[700px]:h-screen max-[700px]:w-screen"
         >
           <label htmlFor="pseudo" className="text-white">
             <p className="pb-2 font-bold text-xl">Username</p>
-            <div className="flex items-center rounded-3xl px-2 py-1 bg-tertiary/[0.1] w-80 h-12">
+            <div className="flex items-center rounded-3xl px-2 py-1 bg-tertiary/[0.1] w-80 h-12 max-[700px]:w-70">
               <input
                 type="text"
                 name="pseudo"
@@ -66,7 +66,7 @@ function Login() {
           </label>
           <label htmlFor="password" className="text-white">
             <p className="pb-2 font-bold text-xl">Password</p>
-            <div className="flex items-center rounded-3xl px-2 py-1 bg-tertiary/[0.1] w-80 h-12">
+            <div className="flex items-center rounded-3xl px-2 py-1 bg-tertiary/[0.1] w-80 h-12 max-[700px]:w-70">
               <input
                 type="password"
                 name="password"
