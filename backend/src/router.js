@@ -20,18 +20,9 @@ router.get("/users/:id", userControllers.find);
 
 // Route to add a new user
 router.post("/users", inscription, hashPassword, userControllers.add);
-/* {
-    "pseudo" : "admin",
-    "email" : "admin@admin.com",
-    "password": "rootroot"
-} */
 
 // Route to login
 router.post("/login", verifyPassword, userControllers.login);
-/* {
-    "pseudo" : "admin",
-    "password": "rootroot"
-} */
 router.get("/logout", userControllers.logout);
 router.get("/admin", checkToken, userControllers.admin);
 
@@ -41,22 +32,8 @@ router.post(
   alreadyInYourList,
   userControllers.addgame
 );
-/* http://localhost:3310/api/users/played/836951 lien exemple
-{
-    "id" : 1,
-    "liked" : 1
-} */
 router.put("/users/played/:id", checkToken, userControllers.update);
-/*
-{
-    "id" : 1,
-    "liked" : 1,
-    "rating" : 5
-}
-*/
-
 router.get("/users/list/:pseudo", checkToken, userControllers.readAll);
-// http://localhost:3310/api/users/list/pseudo
 router.get("/users/favorite/:pseudo", checkToken, userControllers.readFavorite);
 
 router.delete(
@@ -68,3 +45,39 @@ router.post("/users/game/:gameId", checkToken, userControllers.checkGame);
 
 router.get("/protected", checkToken, userControllers.protectedRoute);
 module.exports = router;
+
+/* ************************************************************************* */
+/*
+Exemple d'utilisation : 
+
+
+router.post("/users"
+{
+    "pseudo" : "admin",
+    "email" : "admin@admin.com",
+    "password": "rootroot"
+}
+
+router.post("/login"
+{
+    "pseudo" : "admin",
+    "password : "rootroot"
+}
+
+router.post(
+  "/users/played/:id"
+http://localhost:3310/api/users/played/836951 lien exemple
+{
+    "id" : 1,
+    "liked" : 1
+}
+
+router.put("/users/played/:id"
+{
+    "id" : 1,
+    "liked" : 1,
+    "rating" : 5
+}
+
+*/
+/* ************************************************************************* */
