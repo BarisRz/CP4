@@ -24,26 +24,20 @@ router.post("/users", inscription, hashPassword, userControllers.add);
 // Route to login
 router.post("/login", verifyPassword, userControllers.login);
 router.get("/logout", userControllers.logout);
-router.get("/admin", checkToken, userControllers.admin);
 
-router.post(
-  "/users/played/:id",
-  checkToken,
-  alreadyInYourList,
-  userControllers.addgame
-);
-router.put("/users/played/:id", checkToken, userControllers.update);
-router.get("/users/list/:pseudo", checkToken, userControllers.readAll);
-router.get("/users/favorite/:pseudo", checkToken, userControllers.readFavorite);
+// Protected route behind the token
+router.use(checkToken);
+router.get("/admin", userControllers.admin);
 
-router.delete(
-  "/users/list/:gameId",
-  checkToken,
-  userControllers.deleteFromList
-);
-router.post("/users/game/:gameId", checkToken, userControllers.checkGame);
+router.post("/users/played/:id", alreadyInYourList, userControllers.addgame);
+router.put("/users/played/:id", userControllers.update);
+router.get("/users/list/:pseudo", userControllers.readAll);
+router.get("/users/favorite/:pseudo", userControllers.readFavorite);
 
-router.get("/protected", checkToken, userControllers.protectedRoute);
+router.delete("/users/list/:gameId", userControllers.deleteFromList);
+router.post("/users/game/:gameId", userControllers.checkGame);
+
+router.get("/protected", userControllers.protectedRoute);
 module.exports = router;
 
 /* ************************************************************************* */
