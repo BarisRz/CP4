@@ -26,7 +26,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="main-container max-w-[1200px] min-h-screen text-white mx-auto pt-[72px]">
+      <div className="max-w-[1200px] min-h-screen text-white mx-auto pt-[72px]">
         <Outlet />
       </div>
     </>
