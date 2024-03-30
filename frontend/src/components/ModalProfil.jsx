@@ -51,12 +51,10 @@ function ModalProfil({ closeModal, anchor, scrolled }) {
       <button
         type="button"
         onClick={(e) => e.stopPropagation()}
-        className={`absolute w-[200px] bg-primary z-50 cursor-default flex flex-col p-4 gap-2 transition duration-700 ${
-          scrolled ? "bg-primary shadow-2xl" : "bg-transparent"
-        }`}
+        className="absolute w-[200px] bg-primary z-50 cursor-default flex flex-col p-4 gap-2 transition duration-700"
         style={{
           top: position ? position.top + 60 : 0,
-          left: position ? position.left - 80 : 0,
+          left: position ? position.left - 120 : 0,
         }}
       >
         <NavLink

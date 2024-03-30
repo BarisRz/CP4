@@ -7,7 +7,7 @@ function GameThumbnail({ game }) {
   const [gameId, setGameId] = useState(game.id);
   return (
     <Link to={`/games/${game.id}`}>
-      <div className="w-[220px] h-[220px] bg-primary rounded-2xl flex flex-col hover:scale-110 transition overflow-hidden shadow-2xl max-[1200px]:w-[20vw] min-w-20">
+      <div className="w-[220px] h-[220px] bg-primary rounded-2xl flex flex-col hover:scale-110 transition overflow-hidden shadow-2xl max-1200:w-[20vw] min-w-36">
         <div
           className=" bg-transparent h-[140px] flex-2"
           style={{

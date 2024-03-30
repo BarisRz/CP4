@@ -73,23 +73,29 @@ function Profil() {
 
   return (
     <div className="flex flex-col gap-3 mt-4">
-      <p className="text-6xl font-bold py-[72px] bg-gradient-to-l from-secondary/75 to-secondary/[0] rounded-2xl">
+      <p className="text-6xl font-bold py-[72px] bg-gradient-to-l from-secondary/75 to-secondary/[0] rounded-2xl max-900:py-12 max-700:py-8 max-350:py-6 max-900:text-5xl max-700:text-5xl max-350:text-3xl">
         Welcome {user.pseudo}!
       </p>
-      <div className="flex text-3xl justify-around font-bold bg-gradient-to-r from-primary to-secondary/[0] p-4 rounded-2xl">
+      <div className="flex text-3xl justify-around font-bold bg-gradient-to-r from-primary to-secondary/[0] p-4 rounded-2xl max-350:text-xl">
         <div>
           <p>Played</p>
-          <p className="text-center text-5xl">{tailleUserList}</p>
+          <p className="text-center text-5xl max-350:text-2xl">
+            {tailleUserList}
+          </p>
         </div>
         <div>
           <p>Favorite</p>
-          <p className="text-center text-5xl">{tailleFavoriteList}</p>
+          <p className="text-center text-5xl max-350:text-2xl">
+            {tailleFavoriteList}
+          </p>
         </div>
       </div>
       <div>
         <div className="my-8">
           <div className="flex justify-between items-center">
-            <p className="text-2xl font-bold self-end">Your favorite</p>
+            <p className="text-2xl font-bold self-end max-350:text-xl">
+              Your favorite
+            </p>
             <NavLink
               to="/mylist/favorites"
               className="flex items-center font-bold rounded-2xl p-2 px-4 bg-gradient-to-r from-secondary to-blue-500"
@@ -97,7 +103,7 @@ function Profil() {
               See the whole list
             </NavLink>
           </div>
-          <div className="flex mt-4 mb-28 gap-[25px] flex-wrap">
+          <div className="flex mt-4 mb-28 gap-[25px] flex-wrap justify-center">
             {isLoading ? (
               <LoadingSVG />
             ) : (
@@ -109,7 +115,9 @@ function Profil() {
         </div>
         <div className="my-8">
           <div className="flex justify-between items-center">
-            <p className="text-2xl font-bold self-end">Your list</p>
+            <p className="text-2xl font-bold self-end max-350:text-xl">
+              Your list
+            </p>
             <NavLink
               to="/mylist"
               className="flex items-center font-bold rounded-2xl p-2 px-4 bg-gradient-to-r from-secondary to-blue-500"
@@ -117,7 +125,7 @@ function Profil() {
               See the whole list
             </NavLink>
           </div>
-          <div className="flex mt-4 mb-28 gap-[25px] flex-wrap">
+          <div className="flex mt-4 mb-28 gap-[25px] flex-wrap justify-center">
             {isLoading ? (
               <LoadingSVG />
             ) : (

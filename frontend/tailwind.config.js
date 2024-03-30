@@ -14,6 +14,12 @@ module.exports = {
       height: {
         screen2: "calc(100vh - 72px)",
       },
+      screens: {
+        1200: "1200px",
+        900: "900px",
+        700: "700px",
+        350: "350px",
+      },
     },
   },
   plugins: [],

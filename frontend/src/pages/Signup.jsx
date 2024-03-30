@@ -38,17 +38,17 @@ function SignUp() {
   return (
     <AnimatedPage>
       <div
-        className="flex flex-col items-center justify-center h-screen2 pb-[72px] bg-center bg-no-repeat max-[700px]:pb-0"
+        className="flex flex-col items-center justify-center h-screen2 pb-[72px] bg-center bg-no-repeat max-700:pb-0"
         style={{ backgroundImage: `url(${hero})` }}
       >
         <form
           onSubmit={handleSubmit}
           method="POST"
-          className="flex flex-col items-center justify-center gap-6 bg-primary w-[500px] h-[550px] rounded-2xl shadow-2xl shadow-black max-[700px]:h-screen max-[700px]:w-screen"
+          className="flex flex-col items-center justify-center gap-6 bg-primary w-[500px] h-[550px] rounded-2xl shadow-2xl shadow-black max-700:h-screen max-700:w-screen max-700:rounded-none"
         >
           <label htmlFor="pseudo" className="text-white">
             <p className="pb-2 font-bold text-xl">Username</p>
-            <div className="flex items-center rounded-3xl px-2 py-1 bg-tertiary/[0.1] w-80 h-12 max-[700px]:w-70">
+            <div className="flex items-center rounded-3xl px-2 py-1 bg-tertiary/[0.1] w-80 h-12 max-700:w-72 max-350:w-60">
               <input
                 type="text"
                 name="pseudo"
@@ -63,7 +63,7 @@ function SignUp() {
           </label>
           <label htmlFor="email" className="text-white">
             <p className="pb-2 font-bold text-xl">Email</p>
-            <div className="flex items-center rounded-3xl px-2 py-1 bg-tertiary/[0.1] w-80 h-12 max-[700px]:w-70">
+            <div className="flex items-center rounded-3xl px-2 py-1 bg-tertiary/[0.1] w-80 h-12 max-700:w-72 max-350:w-60">
               <input
                 type="email"
                 name="email"
@@ -78,7 +78,7 @@ function SignUp() {
           </label>
           <label htmlFor="password" className="text-white">
             <p className="pb-2 font-bold text-xl">Password</p>
-            <div className="flex items-center rounded-3xl px-2 py-1 bg-tertiary/[0.1] w-80 h-12 max-[700px]:w-70">
+            <div className="flex items-center rounded-3xl px-2 py-1 bg-tertiary/[0.1] w-80 h-12 max-700:w-72 max-350:w-60">
               <input
                 type="password"
                 name="password"
@@ -94,11 +94,14 @@ function SignUp() {
           </label>
           <button
             type="submit"
-            className="flex items-center justify-center rounded-3xl px-2 py-1 w-80 h-12 mt-6 bg-gradient-to-r from-secondary to-blue-500 font-bold hover:scale-105 hover:saturate-150 transition"
+            className="flex items-center justify-center rounded-3xl px-2 py-1 w-80 h-12 mt-6 bg-gradient-to-r from-secondary to-blue-500 font-bold hover:scale-105 hover:saturate-150 transition max-700:w-72 max-350:w-60"
           >
             Sign Up
           </button>
-          <NavLink to="/login" className="text-gray-400">
+          <NavLink
+            to="/login"
+            className="text-gray-400 max-700:w-72 max-350:w-60"
+          >
             Already have an account?{" "}
             <span className="text-secondary">Click here</span>
           </NavLink>

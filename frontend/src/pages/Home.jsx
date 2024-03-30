@@ -70,7 +70,7 @@ function Home() {
           <img
             src={heroimg}
             alt="hero"
-            className="scale-150 max-[1400px]:scale-100 max-[700px]:hidden"
+            className="scale-150 max-[1400px]:scale-100 max-700:hidden"
           />
         </div>
         <button
@@ -87,36 +87,36 @@ function Home() {
         </button>
       </div>
       <div>
-        <div className="flex justify-between items-center">
-          <p className="text-2xl font-bold self-end max-[700px]:text-lg">
-            Most recommended by Players
+        <div className="flex justify-between items-center max-1200:mx-1">
+          <p className="text-2xl font-bold self-end max-700:text-lg">
+            Most recommended
           </p>
           <NavLink
             to="popular"
-            className="flex items-center font-bold rounded-2xl p-2 px-4 bg-gradient-to-r from-secondary to-blue-500 max-[700px]:text-sm"
+            className="flex items-center font-bold rounded-2xl p-2 px-4 bg-gradient-to-r from-secondary to-blue-500 max-700:text-sm"
           >
             See more
           </NavLink>
         </div>
-        <div className="flex my-4 gap-[25px] flex-wrap max-[1200px]:gap-0">
+        <div className="flex my-4 gap-[25px] flex-wrap max-1200:gap-2 max-1200:justify-center">
           {recommendedGames.map((game) => (
             <GameThumbnail key={game.id} game={game} />
           ))}
         </div>
       </div>
       <div className="my-8">
-        <div className="flex justify-between items-center">
-          <p className="text-2xl font-bold self-end max-[700px]:text-lg">
+        <div className="flex justify-between items-center max-1200:mx-1">
+          <p className="text-2xl font-bold self-end max-700:text-lg">
             Highest Metacritic
           </p>
           <NavLink
             to="popular"
-            className="flex items-center font-bold rounded-2xl p-2 px-4 bg-gradient-to-r from-secondary to-blue-500 max-[700px]:text-sm"
+            className="flex items-center font-bold rounded-2xl p-2 px-4 bg-gradient-to-r from-secondary to-blue-500 max-700:text-sm"
           >
             See more
           </NavLink>
         </div>
-        <div className="flex mt-4 mb-28 gap-[25px] flex-wrap max-[1200px]:gap-0">
+        <div className="flex mt-4 mb-28 gap-[25px] flex-wrap max-1200:gap-2 max-1200:justify-center">
           {metacriticGames.map((game) => (
             <GameThumbnail key={game.id} game={game} />
           ))}
