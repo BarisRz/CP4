@@ -35,7 +35,7 @@ function MyList() {
   return (
     <div className="flex flex-col gap-2 mt-4">
       <div>
-        <p className="text-6xl font-bold py-[72px] bg-gradient-to-l from-secondary/75 to-secondary/[0] rounded-2xl">
+        <p className="text-6xl font-bold py-[72px] bg-gradient-to-l from-secondary/75 to-secondary/[0] rounded-2xl max-1200:rounded-none max-1200:text-5xl max-1200:py-16 max-900:py-14 max-700:py-12 max-350:py-8 max-900:text-4xl">
           My Personal List
         </p>
       </div>
@@ -89,7 +89,7 @@ function MyList() {
           Rated
         </button>
       </div>
-      <div className="flex flex-wrap gap-6 mt-4 mb-[72px]">
+      <div className="flex flex-wrap gap-6 mt-4 mb-[72px] justify-center">
         {userList.map((game) => (
           <GameThumbnailFETCH
             key={game.gameId}

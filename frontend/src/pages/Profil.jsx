@@ -73,7 +73,7 @@ function Profil() {
 
   return (
     <div className="flex flex-col gap-3 mt-4">
-      <p className="text-6xl font-bold py-[72px] bg-gradient-to-l from-secondary/75 to-secondary/[0] rounded-2xl max-900:py-12 max-700:py-8 max-350:py-6 max-900:text-5xl max-700:text-5xl max-350:text-3xl">
+      <p className="text-6xl font-bold py-[72px] bg-gradient-to-l from-secondary/75 to-secondary/[0] rounded-2xl max-1200:rounded-none max-1200:text-5xl max-1200:py-16 max-900:py-14 max-700:py-12 max-350:py-8 max-900:text-4xl">
         Welcome {user.pseudo}!
       </p>
       <div className="flex text-3xl justify-around font-bold bg-gradient-to-r from-primary to-secondary/[0] p-4 rounded-2xl max-350:text-xl">

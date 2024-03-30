@@ -35,10 +35,10 @@ function Popular() {
 
   return (
     <div className="flex flex-col gap-3 mt-4">
-      <p className="text-6xl font-bold py-[72px] bg-gradient-to-l from-secondary/75 to-secondary/[0] rounded-2xl mb-2">
+      <p className="text-6xl font-bold py-[72px] bg-gradient-to-l from-secondary/75 to-secondary/[0] rounded-2xl mb-2 max-1200:rounded-none max-1200:text-5xl max-1200:py-16 max-900:py-14 max-700:py-12 max-350:py-8 max-900:text-4xl">
         Popular Games
       </p>
-      <div className="flex flex-wrap gap-6 mb-[42px] max-1200:gap-0">
+      <div className="flex flex-wrap gap-6 mb-[42px] max-1200:gap-1 justify-center">
         {isLoading ? (
           <LoadingSVG />
         ) : (

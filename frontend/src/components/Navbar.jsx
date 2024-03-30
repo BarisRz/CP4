@@ -8,12 +8,13 @@ import ModalProfil from "./ModalProfil";
 import search from "../assets/search.svg";
 import loggedicon from "../assets/user-icon.svg";
 import adminlock from "../assets/adminlock.svg";
-import login from "../assets/login.svg";
 import burger from "../assets/menu-burger.svg";
+import cross from "../assets/cross.svg";
 
 function Navbar() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -183,9 +184,17 @@ function Navbar() {
                 />
               </button>
             )}
-            <div className="700:hidden">
-              <img src={burger} alt="menu burger icon" className="w-10" />
-            </div>
+            <button
+              type="button"
+              className="700:hidden"
+              onClick={() => setMenuOpen((prev) => !prev)}
+            >
+              <img
+                src={menuOpen ? cross : burger}
+                alt="menu burger icon"
+                className="w-10"
+              />
+            </button>
             <AnimatePresence>
               {isModalOpen && (
                 <ModalProfil
@@ -198,6 +207,61 @@ function Navbar() {
           </div>
         </div>
       </div>
+      {menuOpen && (
+        <div className="w-screen font-bold">
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <NavLink
+              to="popular"
+              offset={-72}
+              duration={500}
+              className="block px-4 py-2"
+              onClick={() => {
+                setMenuOpen(false);
+              }}
+            >
+              Popular
+            </NavLink>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+          >
+            <NavLink
+              to="last-released"
+              offset={-72}
+              duration={500}
+              className="block px-4 py-2"
+              onClick={() => {
+                setMenuOpen(false);
+              }}
+            >
+              Last Released
+            </NavLink>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+          >
+            <NavLink
+              to="contact"
+              offset={-72}
+              duration={500}
+              className="block px-4 py-2"
+              onClick={() => {
+                setMenuOpen(false);
+              }}
+            >
+              Contact
+            </NavLink>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 }
