@@ -30,7 +30,7 @@ function Game() {
           <img
             src={game.background_image}
             alt={`the game ${game.name}`}
-            className="w-[500px] h-[280x] object-cover border-2 border-secondary shadow-2xl max-700:w-[350px] max-700:h-[190px]"
+            className="w-[500px] h-[280x] object-cover border-2 border-secondary shadow-2xl max-700:w-[350px] max-700:h-[190px] self-center"
           />
         ) : (
           <div className="w-[500px] h-[280px] object-cover border-2 border-secondary shadow-2xl flex justify-center items-center text-xl max-700:w-[350px] max-700:h-[190px]">

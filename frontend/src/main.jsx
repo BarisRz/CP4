@@ -19,10 +19,12 @@ import MyList from "./pages/MyList";
 import Popular from "./pages/Popular";
 import LastReleased from "./pages/LastReleased";
 import ProtectedRoute from "./pages/ProtectedRoute";
+import Error from "./pages/Error";
 
 const router = createBrowserRouter([
   {
     element: <App />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",

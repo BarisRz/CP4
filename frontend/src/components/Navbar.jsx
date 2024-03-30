@@ -1,15 +1,22 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useUser } from "../contexts/UserContext";
 
 import ModalProfil from "./ModalProfil";
+import { success } from "../services/toast";
 
 import search from "../assets/search.svg";
 import loggedicon from "../assets/user-icon.svg";
 import adminlock from "../assets/adminlock.svg";
 import burger from "../assets/menu-burger.svg";
 import cross from "../assets/cross.svg";
+import login from "../assets/login.svg";
+import logout from "../assets/logout.svg";
+import profilsettings from "../assets/profil-settings.svg";
+import list from "../assets/list.svg";
+import favorite from "../assets/favorite.svg";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -22,7 +29,7 @@ function Navbar() {
   };
 
   const [scrolled, setScrolled] = useState(false);
-  const { user } = useUser();
+  const { user, setUser } = useUser();
 
   const imgRef = useRef(null);
   const location = useLocation();
@@ -35,6 +42,25 @@ function Navbar() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleLogout = async () => {
+    try {
+      const res = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/logout`,
+        {
+          withCredentials: true,
+          credentials: "include",
+        }
+      );
+      if (res.status === 200) {
+        setUser(false);
+        success(`Vous avez été déconnecté !`);
+        navigate("/", { replace: true });
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
@@ -174,7 +200,11 @@ function Navbar() {
                 </div>
               </>
             ) : (
-              <button type="button" onClick={handleImageClick}>
+              <button
+                type="button"
+                onClick={handleImageClick}
+                className="max-700:hidden"
+              >
                 <img
                   src={loggedicon}
                   ref={imgRef}
@@ -208,7 +238,7 @@ function Navbar() {
         </div>
       </div>
       {menuOpen && (
-        <div className="w-screen font-bold">
+        <div className="w-screen font-bold shadow-lg bg-primary/20">
           <motion.div
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
@@ -216,8 +246,6 @@ function Navbar() {
           >
             <NavLink
               to="popular"
-              offset={-72}
-              duration={500}
               className="block px-4 py-2"
               onClick={() => {
                 setMenuOpen(false);
@@ -233,8 +261,6 @@ function Navbar() {
           >
             <NavLink
               to="last-released"
-              offset={-72}
-              duration={500}
               className="block px-4 py-2"
               onClick={() => {
                 setMenuOpen(false);
@@ -249,17 +275,113 @@ function Navbar() {
             transition={{ duration: 0.3, delay: 0.2 }}
           >
             <NavLink
-              to="contact"
-              offset={-72}
-              duration={500}
+              to="lists"
               className="block px-4 py-2"
               onClick={() => {
                 setMenuOpen(false);
               }}
             >
-              Contact
+              Other Lists
             </NavLink>
           </motion.div>
+          {user ? (
+            <>
+              <motion.div
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: 0.3 }}
+              >
+                <NavLink
+                  to="profil"
+                  className="flex gap-2 bg-secondary/10 px-4 py-2 border-white border-t"
+                  onClick={() => {
+                    setMenuOpen(false);
+                  }}
+                >
+                  <img
+                    src={profilsettings}
+                    alt="profil button"
+                    className="w-6"
+                  />
+                  Profil
+                </NavLink>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: 0.3 }}
+              >
+                <NavLink
+                  to="mylist"
+                  className="flex gap-2 bg-secondary/10 px-4 py-2"
+                  onClick={() => {
+                    setMenuOpen(false);
+                  }}
+                >
+                  <img
+                    src={list}
+                    alt="my personal list button"
+                    className="w-6"
+                  />
+                  My list
+                </NavLink>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: 0.3 }}
+              >
+                <NavLink
+                  to="mylist/favorites"
+                  className="flex gap-2 bg-secondary/10 px-4 py-2"
+                  onClick={() => {
+                    setMenuOpen(false);
+                  }}
+                >
+                  <img
+                    src={favorite}
+                    alt="my personal list button"
+                    className="w-6"
+                  />
+                  My favorite
+                </NavLink>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: 0.3 }}
+              >
+                <button
+                  type="button"
+                  className="flex gap-2 px-4 py-2 bg-red-700/15 w-screen"
+                  onClick={() => {
+                    setMenuOpen(false);
+                    handleLogout();
+                  }}
+                >
+                  <img src={logout} alt="logout button" className="w-6" />
+                  Log Out
+                </button>
+              </motion.div>
+            </>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
+            >
+              <NavLink
+                to="login"
+                className="px-4 py-2 flex gap-2 bg-secondary/30"
+                onClick={() => {
+                  setMenuOpen(false);
+                }}
+              >
+                Log In
+                <img src={login} alt="login button" className="w-6" />
+              </NavLink>
+            </motion.div>
+          )}
         </div>
       )}
     </div>
