@@ -123,8 +123,8 @@ function GameInteraction({ game }) {
   };
 
   return (
-    <div className="flex w-11/12 gap-6 justify-between">
-      <div className="flex items-center gap-6">
+    <div className="flex w-11/12 gap-6 justify-between max-700:w-auto">
+      <div className="flex items-center gap-6 max-700:scale-75">
         <Rating
           onClick={handleRating}
           className="custom-rating"
@@ -135,7 +135,7 @@ function GameInteraction({ game }) {
           fillColor="#26ccf2"
           emptyColor="#333232"
         />
-        <p>({game.rating})</p>
+        <p className="max-700:hidden">({game.rating})</p>
         <button
           type="button"
           className="group"
@@ -169,7 +169,11 @@ function GameInteraction({ game }) {
           </button>
         </div>
       </div>
-      <button type="button" onClick={() => handlePlayed(game.id)}>
+      <button
+        type="button"
+        onClick={() => handlePlayed(game.id)}
+        className="max-700:hidden"
+      >
         <img
           src={isPlayed !== false ? controllerplayed : controllernotplayed}
           alt="favorite"

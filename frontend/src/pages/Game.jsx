@@ -22,7 +22,7 @@ function Game() {
       })
       .catch((error) => console.error("Error:", error));
   }, []);
-
+  console.log(game);
   return (
     <div className="flex flex-col pt-10 gap-2 w-full">
       <div className="flex gap-2 w-full bg-gradient-to-l from-primary to-secondary/[0] py-4 rounded-2xl max-1200:flex-col">
@@ -73,7 +73,7 @@ function Game() {
       </div>
       <div className="flex items-center justify-center py-8 bg-gradient-to-r from-primary to-secondary/[0] rounded-2xl">
         {user === false ? (
-          <div className="flex items-center">
+          <div className="flex items-center max-350:scale-75">
             <Rating
               className="custom-rating"
               SVGclassName="inline-block"
@@ -100,10 +100,9 @@ function Game() {
           </p>
         ))}
       </div>
-      <div
-        dangerouslySetInnerHTML={{ __html: game.description }}
-        className="text-lg bg-primary p-8 mb-8 rounded-2xl"
-      />
+      <p className="text-lg bg-primary p-8 mb-8 rounded-2xl">
+        {game.description_raw}
+      </p>
     </div>
   );
 }
