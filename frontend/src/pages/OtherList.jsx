@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import GameThumbnailFETCH from "../components/GameThumbnailFETCH";
 
 function OtherList() {
   const [allPlayersLists, setAllPlayersLists] = useState([]);
@@ -18,8 +19,16 @@ function OtherList() {
       </p>
       <div className="flex flex-wrap gap-6 mb-[42px] max-1200:gap-1 mx-1 flex-col">
         {allPlayersLists.map((player) => (
-          <div className="bg-gradient-to-r from-secondary/75 to-secondary/[0] p-1">
-            {player.userId}
+          <div key={player.userId}>
+            <div className="bg-gradient-to-r from-secondary/75 to-secondary/[0] p-4 rounded-t-2xl text-lg font-bold">
+              {player.userId}
+            </div>
+
+            <div className="flex flex-wrap gap-[23px] max-1200:gap-2 max-1200:justify-center mb-5">
+              {player.games.map((game) => (
+                <GameThumbnailFETCH key={game} gameId={game} />
+              ))}
+            </div>
           </div>
         ))}
       </div>
