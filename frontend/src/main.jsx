@@ -20,6 +20,7 @@ import Popular from "./pages/Popular";
 import LastReleased from "./pages/LastReleased";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import Error from "./pages/Error";
+import OtherList from "./pages/OtherList";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/last-released",
         element: <LastReleased />,
+      },
+      {
+        path: "/lists",
+        element: <OtherList />,
       },
       {
         element: <ProtectedRoute />,
