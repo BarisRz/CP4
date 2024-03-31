@@ -104,6 +104,19 @@ class UserManager extends AbstractManager {
     );
     return result.affectedRows;
   }
+
+  async getPlayersLists() {
+    const [result] = await this.database
+      .query(`SELECT u.pseudo AS userId, p.gameId 
+    FROM (
+      SELECT id, pseudo
+      FROM ${this.table}
+      ORDER BY RAND()
+      LIMIT 5
+    ) AS u
+    JOIN played AS p ON u.id = p.userId`);
+    return result;
+  }
 }
 
 module.exports = UserManager;

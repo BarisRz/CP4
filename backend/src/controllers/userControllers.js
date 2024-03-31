@@ -190,6 +190,31 @@ const protectedRoute = async (req, res) => {
   }
 };
 
+const playerLists = async (req, res) => {
+  try {
+    const result = await tables.utilisateur.getPlayersLists();
+
+    const finalResult = [];
+    const seenUsers = [];
+
+    for (let i = 0; i < result.length; i++) {
+      const { userId, gameId } = result[i];
+      const userIndex = seenUsers.indexOf(userId);
+
+      if (userIndex === -1) {
+        seenUsers.push(userId);
+        finalResult.push({ userId, games: [gameId] });
+      } else {
+        finalResult[userIndex].games.push(gameId);
+      }
+    }
+
+    res.json(finalResult.slice(0, 5));
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 // Ready to export the controller functions
 module.exports = {
   add,
@@ -204,4 +229,5 @@ module.exports = {
   checkGame,
   readFavorite,
   protectedRoute,
+  playerLists,
 };

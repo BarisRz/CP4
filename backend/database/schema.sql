@@ -69,7 +69,6 @@ CREATE TABLE `utilisateur` (
 /*!40000 ALTER TABLE `utilisateur` DISABLE KEYS */;
 INSERT INTO `utilisateur` VALUES (1,'admin','$argon2id$v=19$m=19456,t=2,p=1$SN+0T9MrL9jqgcQFGxkWkQ$umoq98Q/+yuyliBZZ9Wb7mVE0Kdz8TG+x8HXz9pE0IY','admin@admin.com',1);
 /*!40000 ALTER TABLE `utilisateur` ENABLE KEYS */;
-
 --
 -- Dumping routines for database 'cp4'
 --

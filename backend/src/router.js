@@ -24,6 +24,7 @@ router.post("/users", inscription, hashPassword, userControllers.add);
 // Route to login
 router.post("/login", verifyPassword, userControllers.login);
 router.get("/logout", userControllers.logout);
+router.get("/otherlists", userControllers.playerLists);
 
 // Protected route behind the token
 router.use(checkToken);
