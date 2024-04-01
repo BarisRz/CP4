@@ -28,7 +28,7 @@ function Admin() {
       className="h-screen2 flex justify-center items-center pb-[72px] text-6xl bg-contain bg-no-repeat bg-center"
       style={{ backgroundImage: `url(${Fistik})` }}
     >
-      <p className="bg-secondary">La page admin looooool</p>
+      <p className="bg-secondary">La page admin</p>
     </div>
   );
 }
