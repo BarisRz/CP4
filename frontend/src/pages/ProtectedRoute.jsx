@@ -1,5 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { success, failed } from "../services/toast";
 import axios from "axios";
 
 import LoadingSVG from "../components/Loading";
@@ -17,6 +18,7 @@ function ProtectedRoute() {
       })
       .catch((err) => {
         navigate("/login", { replace: true });
+        failed(`Besoin d'être authentifier`);
         console.error(err);
       });
   }, []);
